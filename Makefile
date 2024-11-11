@@ -15,12 +15,13 @@ CFLAGS = -Wall -Wextra -Werror
 
 SRCS = push_swap_radix.c push_swap_utils.c
 OBJS = ${SRCS:.c=.o}
+INCLUDE		=	-I.
 
 NAME = push_swap
 
 $(NAME): ${OBJS}
 	@make re -C ./libft
-	${CC} ${CFLAGS} ${OBJS} -Llibft -lft -o ${NAME}
+	${CC} ${CFLAGS}  $^ ${INCLUDE} -Llibft -lft -o ${NAME}
 
 all: $(NAME)
 
