@@ -33,6 +33,5 @@ int check_almost_order_min_to_max(t_list *first_node);
 int reverse_check_almost_min_to_max(t_list *first_node);
 int check_order_max_to_min(t_list *first_node);
 int check_almost_order_max_to_min(t_list *first_node);
-int reverse_check_almost_max_to_min(t_list *first_node);
 
 #endif
