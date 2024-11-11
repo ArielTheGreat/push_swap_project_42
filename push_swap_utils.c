@@ -12,33 +12,34 @@
 
 #include "push_swap_utils.h"
 
-void rrr(t_list **first_node_a, t_list **first_node_b)
+void	rrr(t_list **first_node_a, t_list **first_node_b)
 {
-    rra(first_node_a);
-    rrb(first_node_b);
+	rra(first_node_a);
+	rrb(first_node_b);
 }
 
-t_list *create_node(int number_char)
+t_list	*create_node(int number_char)
 {
-    t_list *n;
-    int    *number;
+	t_list	*n;
+	int		*number;
 
-    number = malloc(sizeof(int));
-    if (!number)
-        return (NULL); 
-    *number = number_char;
-    n = malloc(sizeof(t_list));
-    if (!n)
-    {
-        free(number);
-        return (NULL);
-    }
-    n->content = (void *)number;
-    n->next = NULL;
-    return (n);
+	number = malloc(sizeof(int));
+	if (!number)
+		return (NULL);
+	*number = number_char;
+	n = malloc(sizeof(t_list));
+	if (!n)
+	{
+		free(number);
+		return (NULL);
+	}
+	n->content = (void *)number;
+	n->next = NULL;
+	return (n);
 }
 
-void	move_to_stack_b(t_list **stack_a, t_list **stack_b, int midpoint, int *count_instructions)
+void	move_to_stack_b(t_list **stack_a, t_list **stack_b,
+						int midpoint, int *count_instructions)
 {
 	int	current_value;
 
@@ -54,7 +55,8 @@ void	move_to_stack_b(t_list **stack_a, t_list **stack_b, int midpoint, int *coun
 	(*count_instructions)++;
 }
 
-void	empty_stack_b(t_list **stack_a, t_list **stack_b, int *count_instructions)
+void	empty_stack_b(t_list **stack_a, t_list **stack_b,
+		int *count_instructions)
 {
 	while (*stack_b != NULL)
 	{

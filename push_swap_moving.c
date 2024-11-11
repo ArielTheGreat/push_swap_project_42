@@ -12,66 +12,62 @@
 
 #include "push_swap_utils.h"
 
-void sa(t_list *first_node_a)
+void	sa(t_list *first_node_a)
 {
-    t_list *second_node_a;
-    void    *value_first_element;
+	t_list	*second_node_a;
+	void	*value_first_element;
 
-    second_node_a = NULL;
-    if (first_node_a == NULL || !first_node_a->next)
-    {
-        return;
-    }
-    value_first_element = first_node_a->content;
-    second_node_a = first_node_a->next;
-    first_node_a->content = second_node_a->content;
-    second_node_a->content = value_first_element;
-    // printf("%s\n","SA");
+	second_node_a = NULL;
+	if (first_node_a == NULL || !first_node_a->next)
+		return ;
+	value_first_element = first_node_a->content;
+	second_node_a = first_node_a->next;
+	first_node_a->content = second_node_a->content;
+	second_node_a->content = value_first_element;
+	// printf("%s\n", "SA");
 }
 
-void sb(t_list *first_node_b)
+void	sb(t_list *first_node_b)
 {
-    t_list *second_node_b;
-    void   *value_first_element;
+	t_list	*second_node_b;
+	void	*value_first_element;
 
-    second_node_b = NULL;
-    if (first_node_b == NULL || !(first_node_b->next))
-    {
-        return;
-    }
-    second_node_b = first_node_b->next;
-    value_first_element =  first_node_b->content;
-    first_node_b->content = second_node_b->content;
-    second_node_b->content = value_first_element;
-    // printf("%s\n","SB");
+	second_node_b = NULL;
+	if (first_node_b == NULL || !first_node_b->next)
+		return ;
+	second_node_b = first_node_b->next;
+	value_first_element = first_node_b->content;
+	first_node_b->content = second_node_b->content;
+	second_node_b->content = value_first_element;
+	// printf("%s\n", "SB");
 }
 
-void ss(t_list *first_node_a, t_list *first_node_b)
+void	ss(t_list *first_node_a, t_list *first_node_b)
 {
-    sa(first_node_a);
-    sb(first_node_b);
+	sa(first_node_a);
+	sb(first_node_b);
 }
 
-void pa(t_list **first_node_a, t_list **first_node_b)
+void	pa(t_list **first_node_a, t_list **first_node_b)
 {
-    t_list *tmp;
-    if (!first_node_b)
-        return;
+	t_list	*tmp;
 
-    tmp = (*first_node_b)->next;
-    ft_lstadd_front(first_node_a, *first_node_b);
-    *first_node_b = tmp;
-    // printf("%s\n","PA");
+	if (!first_node_b || !*first_node_b)
+		return ;
+	tmp = (*first_node_b)->next;
+	ft_lstadd_front(first_node_a, *first_node_b);
+	*first_node_b = tmp;
+	// printf("%s\n", "PA");
 }
 
-void pb(t_list **first_node_b, t_list **first_node_a)
+void	pb(t_list **first_node_b, t_list **first_node_a)
 {
-    t_list *tmp;
-    if (!first_node_a)
-        return;
+	t_list	*tmp;
 
-    tmp = (*first_node_a)->next;
-    ft_lstadd_front(first_node_b, *first_node_a);
-    *first_node_a = tmp;
-    // printf("%s\n","PB");
+	if (!first_node_a || !*first_node_a)
+		return ;
+	tmp = (*first_node_a)->next;
+	ft_lstadd_front(first_node_b, *first_node_a);
+	*first_node_a = tmp;
+	// printf("%s\n", "PB");
 }
