@@ -37,61 +37,50 @@ void print_content(void *node)
     printf("%i ",*(int *)node);
 }
 
-void apply_radix_push_swap(t_list **first_node_a, t_list **first_node_b, int counter)
-{
-    int i;
-    int temporal_value_bits;
-    int counterOuter;
-    int flag;
-    int counterInstructions;
 
-    i = 0;
-    counterOuter = 0;
-    counterInstructions = 0;
-    while(counterOuter < 32)
-    {
-        flag = 0;
-        i = 0;
-        while(i < counter)
-        {
-            temporal_value_bits = *(int *)(*first_node_a)->content >> counterOuter;
-            if((temporal_value_bits & 1) == flag)
-            {
-                pb(first_node_b, first_node_a);
-                printf("%s\n","PB");
-                counterInstructions++;
-            }else{
-                ra(first_node_a);
-                printf("%s\n","RA");
-                counterInstructions++;
+void chunked_quick_sort(t_list **stack_a, t_list **stack_b, int counter) {
+    int count_instructions = 0;
+
+    for (int chunk_size = counter / 4; chunk_size > 1; chunk_size /= 2) {
+        int midpoint = counter / 2;
+        
+        for (int i = 0; i < counter; i++) {
+            int current_value = *(int *)(*stack_a)->content;
+            
+            if (current_value < midpoint) {
+                pb(stack_b, stack_a);
+                printf("pb\n");
+                if (current_value < midpoint / 2) {
+                    rb(stack_b);
+                    printf("rb\n");
+                }
+            } else {
+                ra(stack_a);
+                printf("ra\n");
             }
-            i++;
+            count_instructions++;
         }
-        while(*first_node_b != NULL)
-        {
-            pa(first_node_a, first_node_b);
-            printf("%s\n","PA");
-            counterInstructions++;
+
+        while (*stack_b != NULL) {
+            pa(stack_a, stack_b);
+            printf("pa\n");
+            count_instructions++;
         }
-        if (check_order_min_to_max(*first_node_a))
-            break;
-        counterOuter++;
     }
-    printf("%i\n",counterInstructions);
+
+    printf("Total Instructions: %d\n", count_instructions);
 }
 
-void do_things(t_list *first_node_a, int counter)
-{
-    t_list *first_node_b;
-    int numerical_val;
 
-    first_node_b = NULL;
-    numerical_val = check_order_min_to_max(first_node_a);
-    if (numerical_val == 1)
-        return;
-    apply_radix_push_swap(&first_node_a, &first_node_b, counter);
-    ft_lstiter(first_node_a,print_content);
-    ft_lstclear(&first_node_a,free);
+void do_things(t_list *first_node_a, int counter) {
+    t_list *first_node_b = NULL;
+    int is_sorted = check_order_min_to_max(first_node_a);
+    
+    if (is_sorted == 1) return;
+    chunked_quick_sort(&first_node_a, &first_node_b, counter);
+
+    ft_lstiter(first_node_a, print_content);
+    ft_lstclear(&first_node_a, free);
 }
 
 void swap(int* a, int* b) {
