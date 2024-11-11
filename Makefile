@@ -13,7 +13,7 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = push_swap_radix.c push_swap_utils.c push_swap_utils.h
+SRCS = push_swap_radix.c push_swap_utils.c
 OBJS = ${SRCS:.c=.o}
 
 NAME = push_swap
