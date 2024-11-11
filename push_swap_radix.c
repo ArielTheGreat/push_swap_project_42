@@ -10,9 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "libft/libft.h"
 #include "push_swap_utils.h"
 
 t_list *create_node(int number_char)

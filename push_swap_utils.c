@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include <stdlib.h>
+#include "push_swap_utils.h"
 
 void sa(t_list *first_node_a)
 {
@@ -160,7 +159,6 @@ int check_order_min_to_max(t_list *first_node)
     if (second_node != NULL)
         return 0;
     else{
-        printf("%s\n","ALREADY ORDERED");
         return 1;
     }
 }
@@ -205,7 +203,6 @@ int check_order_max_to_min(t_list *first_node)
     if (second_node != NULL)
         return 0;
     else{
-        printf("%s\n","ALREADY ORDERED");
         return 1;
     }
 }
@@ -252,7 +249,6 @@ int reverse_check_almost_max_to_min(t_list *first_node_b)
     if (second_node != tmp)
         return 0;
     else{
-        printf("%s\n","ALREADY ORDERED");
         return 1;
     }
 }
@@ -272,7 +268,6 @@ int reverse_check_almost_min_to_max(t_list *first_node_a)
     if (second_node != tmp)
         return 0;
     else{
-        printf("%s\n","ALREADY ORDERED");
         return 1;
     }
 }

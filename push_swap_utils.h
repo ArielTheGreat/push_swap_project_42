@@ -13,7 +13,9 @@
 #ifndef PUSH_SWAP_UTILS_H
 #define PUSH_SWAP_UTILS_H
 
-#include "push_swap_utils.c"
+#include <stdio.h>
+#include <stdlib.h>
+#include "libft/libft.h"
 
 void sa(t_list *first_node_a);
 void sb(t_list *first_node_b);
