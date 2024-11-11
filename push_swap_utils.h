@@ -32,5 +32,6 @@ int check_order_min_to_max(t_list *first_node);
 void do_things(t_list *first_node_a, int counter);
 t_list *create_node(int number_char);
 void order_array_quicksort(int *array_int,int length_array);
+void	chunked_quick_sort(t_list **stack_a, t_list **stack_b, int counter);
 
 #endif

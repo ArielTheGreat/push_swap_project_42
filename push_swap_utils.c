@@ -38,47 +38,46 @@ t_list *create_node(int number_char)
     return (n);
 }
 
-void chunked_quick_sort(t_list **stack_a, t_list **stack_b, int counter) 
+void	move_to_stack_b(t_list **stack_a, t_list **stack_b, int midpoint, int *count_instructions)
 {
-    int count_instructions;
-    int chunk_size;
-    int i;
-    int midpoint;
-    int current_value;
-    
-    count_instructions = 0;
-    chunk_size = counter / 4;
-    while (chunk_size > 1) {
-        midpoint = counter / 2;
-        i = 0;
-        while (i < counter) {
-            current_value = *(int *)(*stack_a)->content;
-            if (current_value < midpoint) {
-                pb(stack_b, stack_a);
-                if (current_value < midpoint / 2)
-                    rb(stack_b);
-            } else
-                ra(stack_a);
-            count_instructions++;
-            i++;
-        }
-        while (*stack_b != NULL) 
-        {
-            pa(stack_a, stack_b);
-            count_instructions++;
-        }
-        chunk_size /= 2;
-    }
-    printf("Total Instructions: %d\n", count_instructions);
+	int	current_value;
+
+	current_value = *(int *)(*stack_a)->content;
+	if (current_value < midpoint)
+	{
+		pb(stack_b, stack_a);
+		if (current_value < midpoint / 2)
+			rb(stack_b);
+	}
+	else
+		ra(stack_a);
+	(*count_instructions)++;
 }
 
-void do_things(t_list *first_node_a, int counter) {
-    t_list *first_node_b;
-    int is_sorted;
-    
-    first_node_b = NULL;
-    is_sorted = check_order_min_to_max(first_node_a);
-    if (is_sorted == 1) return;
-    chunked_quick_sort(&first_node_a, &first_node_b, counter);
-    ft_lstclear(&first_node_a, free);
+void	empty_stack_b(t_list **stack_a, t_list **stack_b, int *count_instructions)
+{
+	while (*stack_b != NULL)
+	{
+		pa(stack_a, stack_b);
+		(*count_instructions)++;
+	}
+}
+
+void	chunked_quick_sort(t_list **stack_a, t_list **stack_b, int counter)
+{
+	int	count_instructions;
+	int	midpoint;
+	int	i;
+
+	count_instructions = 0;
+	while (counter / 4 > 1)
+	{
+		midpoint = counter / 2;
+		i = -1;
+		while (++i < counter)
+			move_to_stack_b(stack_a, stack_b, midpoint, &count_instructions);
+		empty_stack_b(stack_a, stack_b, &count_instructions);
+		counter /= 2;
+	}
+	printf("Total Instructions: %d\n", count_instructions);
 }
