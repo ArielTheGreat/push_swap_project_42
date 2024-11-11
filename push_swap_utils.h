@@ -29,5 +29,8 @@ void rra(t_list **first_node_a);
 void rrb(t_list **first_node_b);
 void rrr(t_list **first_node_a, t_list **first_node_b);
 int check_order_min_to_max(t_list *first_node);
+void do_things(t_list *first_node_a, int counter);
+t_list *create_node(int number_char);
+void order_array_quicksort(int *array_int,int length_array);
 
 #endif
