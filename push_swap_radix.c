@@ -12,16 +12,14 @@
 
 #include "push_swap_utils.h"
 
-int	search_in_array(int *integer_list, char *value)
+int	search_in_array(int *integer_list, int size, char *value)
 {
-	int	counter;
-	int	integer;
+    int counter = 0;
+    int integer = ft_atoi(value);
 
-	integer = ft_atoi(value);
-	counter = 0;
-	while (integer_list[counter] != integer)
-		counter++;
-	return (counter);
+    while (counter < size && integer_list[counter] != integer)
+        counter++;
+    return (counter < size ? counter : -1);
 }
 
 int	*process_arguments(int argc, char *argv[])
@@ -53,7 +51,7 @@ t_list	*create_and_link_nodes(int *array_int, int argc, char **argv)
 	counter = 1;
 	while (counter < argc)
 	{
-		new_node = create_node(search_in_array(array_int, argv[counter]));
+		new_node = create_node(search_in_array(array_int, argc - 1, argv[counter]));
 		if (!new_node)
 		{
 			ft_lstclear(&first_node, free);

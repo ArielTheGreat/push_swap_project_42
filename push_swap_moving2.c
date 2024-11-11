@@ -22,7 +22,7 @@ void	ra(t_list **first_node_a)
 	ft_lstadd_back(first_node_a, *first_node_a);
 	*first_node_a = tmp;
 	last_node->next = NULL;
-	// printf("%s\n", "RA");
+	printf("%s\n", "RA");
 }
 
 void	rb(t_list **first_node_b)
@@ -35,7 +35,7 @@ void	rb(t_list **first_node_b)
 	ft_lstadd_back(first_node_b, *first_node_b);
 	*first_node_b = tmp;
 	last_node->next = NULL;
-	// printf("%s\n", "RB");
+	printf("%s\n", "RB");
 }
 
 void	rr(t_list **first_node_a, t_list **first_node_b)
@@ -56,7 +56,7 @@ void	rra(t_list **first_node_a)
 	last_node->next = *first_node_a;
 	tmp->next = NULL;
 	*first_node_a = last_node;
-	// printf("%s\n", "RRA");
+	printf("%s\n", "RRA");
 }
 
 void	rrb(t_list **first_node_b)
@@ -71,5 +71,5 @@ void	rrb(t_list **first_node_b)
 	last_node->next = *first_node_b;
 	tmp->next = NULL;
 	*first_node_b = last_node;
-	// printf("%s\n", "RRB");
+	printf("%s\n", "RRB");
 }
