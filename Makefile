@@ -14,7 +14,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 SRCS = push_swap_radix.c push_swap_utils.c check_order.c push_swap_moving.c \
-		push_swap_moving2.c reverse_check_order.c
+		push_swap_moving2.c
 OBJS = ${SRCS:.c=.o}
 INCLUDE		=	-I.
 
