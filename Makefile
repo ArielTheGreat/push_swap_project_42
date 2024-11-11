@@ -10,4 +10,28 @@
 #                                                                              #
 # **************************************************************************** #
 
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
 
+SRCS = push_swap_radix.c push_swap_utils.c push_swap_utils.h
+OBJS = ${SRCS:.c=.o}
+
+NAME = push_swap
+
+$(NAME): ${OBJS}
+	@make re -C ./libft
+	${CC} ${CFLAGS} ${OBJS} -Llibft -lft -o ${NAME}
+
+all: $(NAME)
+
+clean:
+	@make clean -C ./libft
+	@rm -f ${OBJS}
+
+fclean: clean
+	@make fclean -C ./libft
+	@rm -f ${NAME}
+
+re: fclean all
+
+.PHONY: all clean fclean re
