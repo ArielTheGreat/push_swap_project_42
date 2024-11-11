@@ -34,8 +34,5 @@ int reverse_check_almost_min_to_max(t_list *first_node);
 int check_order_max_to_min(t_list *first_node);
 int check_almost_order_max_to_min(t_list *first_node);
 int reverse_check_almost_max_to_min(t_list *first_node);
-void divide_into_stacks(t_list **first_node_a,t_list **first_node_b, float midpoint, int *counter_instructions);
-void apply_instructions_to_b(t_list **first_node_b, int *counter_instructions);
-void apply_instructions_to_a(t_list **first_node_a, int *counter_instructions);
 
 #endif

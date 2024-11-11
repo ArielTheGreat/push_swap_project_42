@@ -38,47 +38,48 @@ void print_content(void *node)
 }
 
 
-void chunked_quick_sort(t_list **stack_a, t_list **stack_b, int counter) {
-    int count_instructions = 0;
-
-    for (int chunk_size = counter / 4; chunk_size > 1; chunk_size /= 2) {
-        int midpoint = counter / 2;
-        
-        for (int i = 0; i < counter; i++) {
-            int current_value = *(int *)(*stack_a)->content;
-            
+void chunked_quick_sort(t_list **stack_a, t_list **stack_b, int counter) 
+{
+    int count_instructions;
+    int chunk_size;
+    int i;
+    int midpoint;
+    int current_value;
+    
+    count_instructions = 0;
+    chunk_size = counter / 4;
+    while (chunk_size > 1) {
+        midpoint = counter / 2;
+        i = 0;
+        while (i < counter) {
+            current_value = *(int *)(*stack_a)->content;
             if (current_value < midpoint) {
                 pb(stack_b, stack_a);
-                printf("pb\n");
-                if (current_value < midpoint / 2) {
+                if (current_value < midpoint / 2)
                     rb(stack_b);
-                    printf("rb\n");
-                }
-            } else {
+            } else
                 ra(stack_a);
-                printf("ra\n");
-            }
             count_instructions++;
+            i++;
         }
-
-        while (*stack_b != NULL) {
+        while (*stack_b != NULL) 
+        {
             pa(stack_a, stack_b);
-            printf("pa\n");
             count_instructions++;
         }
+        chunk_size /= 2;
     }
-
     printf("Total Instructions: %d\n", count_instructions);
 }
 
-
 void do_things(t_list *first_node_a, int counter) {
-    t_list *first_node_b = NULL;
-    int is_sorted = check_order_min_to_max(first_node_a);
+    t_list *first_node_b;
+    int is_sorted;
     
+    first_node_b = NULL;
+    is_sorted = check_order_min_to_max(first_node_a);
     if (is_sorted == 1) return;
     chunked_quick_sort(&first_node_a, &first_node_b, counter);
-
     ft_lstiter(first_node_a, print_content);
     ft_lstclear(&first_node_a, free);
 }
