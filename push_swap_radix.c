@@ -29,7 +29,7 @@ int ft_check_not_digit_character(char *str)
 	i = 0;
 	while(str[i] != '\0')
 	{
-		if (!ft_isdigit(str[i]))
+		if (!ft_isdigit(str[i]) && str[i] != '+' && str[i] != '-')
 			return (1);
 		i++;
 	}
@@ -132,6 +132,8 @@ int	main(int argc, char *argv[])
 		free(array_int);
 		return (1);
 	}
+	ft_lstiter(first_node, print_content);
+	printf("\n");
 	do_things(first_node, argc - 1);
 	free(array_int);
 	return (0);
