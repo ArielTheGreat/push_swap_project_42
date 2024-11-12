@@ -24,34 +24,35 @@ int	search_in_array(int *integer_list, int size, char *value)
 
 int	*process_arguments(int argc, char *argv[])
 {
-	int	*array_int;
-	int	counter;
-	int	counter_for_array;
+	int	*array_int = malloc((argc - 1) * sizeof(int));
+	int	counter = 1;
+	int	counter_for_array = 0;
 
-	array_int = malloc((argc - 1) * sizeof(int));
 	if (!array_int)
 		return (NULL);
-	counter = 1;
-	counter_for_array = 0;
 	while (counter < argc)
 		array_int[counter_for_array++] = ft_atoi(argv[counter++]);
+
 	order_array_quicksort(array_int, argc - 1);
 	return (array_int);
 }
 
 t_list	*create_and_link_nodes(int *array_int, int argc, char **argv)
 {
-	t_list	*first_node;
-	t_list	*last_node;
-	t_list	*new_node;
-	int		counter;
+	t_list	*first_node = NULL;
+	t_list	*last_node = NULL;
+	int		counter = 1;
 
-	first_node = NULL;
-	last_node = NULL;
-	counter = 1;
 	while (counter < argc)
 	{
-		new_node = create_node(search_in_array(array_int, argc - 1, argv[counter]));
+		int index = search_in_array(array_int, argc - 1, argv[counter]);
+		if (index == -1)
+		{
+			ft_lstclear(&first_node, free); // Cleanup if search fails
+			free(array_int);
+			return (NULL);
+		}
+		t_list *new_node = create_node(index);
 		if (!new_node)
 		{
 			ft_lstclear(&first_node, free);
@@ -67,16 +68,25 @@ t_list	*create_and_link_nodes(int *array_int, int argc, char **argv)
 	return (first_node);
 }
 
+void print_content(void *content)
+{
+    printf("%d ", *(int *)content);
+}
+
 void	do_things(t_list *first_node_a, int counter)
 {
-	t_list	*first_node_b;
-	int		is_sorted;
+	t_list	*first_node_b = NULL;
+	int		is_sorted = check_order_min_to_max(first_node_a);
 
-	first_node_b = NULL;
-	is_sorted = check_order_min_to_max(first_node_a);
 	if (is_sorted == 1)
-		return ;
+	{
+		ft_lstclear(&first_node_a, free); // Free the list if already sorted
+		return;
+	}
+
 	chunked_quick_sort(&first_node_a, &first_node_b, counter);
+	ft_lstiter(first_node_a, print_content);
+    printf("\n");
 	ft_lstclear(&first_node_a, free);
 }
 

@@ -14,28 +14,32 @@
 
 void	ra(t_list **first_node_a)
 {
-	t_list	*tmp;
-	t_list	*last_node;
+	if (!*first_node_a || !(*first_node_a)->next)
+		return;
 
-	tmp = (*first_node_a)->next;
-	last_node = ft_lstlast(*first_node_a);
-	ft_lstadd_back(first_node_a, *first_node_a);
+	t_list	*tmp = (*first_node_a)->next;
+	t_list	*last_node = ft_lstlast(*first_node_a);
+
+	last_node->next = *first_node_a;
+	(*first_node_a)->next = NULL;
 	*first_node_a = tmp;
-	last_node->next = NULL;
-	printf("%s\n", "RA");
+
+	printf("RA\n");
 }
 
 void	rb(t_list **first_node_b)
 {
-	t_list	*tmp;
-	t_list	*last_node;
+	if (!*first_node_b || !(*first_node_b)->next)
+		return;
 
-	tmp = (*first_node_b)->next;
-	last_node = ft_lstlast(*first_node_b);
-	ft_lstadd_back(first_node_b, *first_node_b);
+	t_list	*tmp = (*first_node_b)->next;
+	t_list	*last_node = ft_lstlast(*first_node_b);
+
+	last_node->next = *first_node_b;
+	(*first_node_b)->next = NULL;
 	*first_node_b = tmp;
-	last_node->next = NULL;
-	printf("%s\n", "RB");
+
+	printf("RB\n");
 }
 
 void	rr(t_list **first_node_a, t_list **first_node_b)
@@ -46,30 +50,36 @@ void	rr(t_list **first_node_a, t_list **first_node_b)
 
 void	rra(t_list **first_node_a)
 {
-	t_list	*last_node;
-	t_list	*tmp;
+	if (!*first_node_a || !(*first_node_a)->next)
+		return;
 
-	tmp = *first_node_a;
-	last_node = ft_lstlast(*first_node_a);
+	t_list	*last_node = ft_lstlast(*first_node_a);
+	t_list	*tmp = *first_node_a;
+
 	while (tmp->next != last_node)
 		tmp = tmp->next;
+	
 	last_node->next = *first_node_a;
 	tmp->next = NULL;
 	*first_node_a = last_node;
-	printf("%s\n", "RRA");
+
+	printf("RRA\n");
 }
 
 void	rrb(t_list **first_node_b)
 {
-	t_list	*last_node;
-	t_list	*tmp;
+	if (!*first_node_b || !(*first_node_b)->next)
+		return;
 
-	tmp = *first_node_b;
-	last_node = ft_lstlast(*first_node_b);
+	t_list	*last_node = ft_lstlast(*first_node_b);
+	t_list	*tmp = *first_node_b;
+
 	while (tmp->next != last_node)
 		tmp = tmp->next;
+
 	last_node->next = *first_node_b;
 	tmp->next = NULL;
 	*first_node_b = last_node;
-	printf("%s\n", "RRB");
+
+	printf("RRB\n");
 }
