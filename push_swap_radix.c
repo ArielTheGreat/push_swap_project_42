@@ -22,6 +22,20 @@ int	search_in_array(int *integer_list, int size, char *value)
     return (counter < size ? counter : -1);
 }
 
+int ft_check_not_digit_character(char *str)
+{
+	int i;
+
+	i = 0;
+	while(str[i] != '\0')
+	{
+		if (!ft_isdigit(str[i]))
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 int	*process_arguments(int argc, char *argv[])
 {
 	int	*array_int = malloc((argc - 1) * sizeof(int));
@@ -31,8 +45,17 @@ int	*process_arguments(int argc, char *argv[])
 	if (!array_int)
 		return (NULL);
 	while (counter < argc)
-		array_int[counter_for_array++] = ft_atoi(argv[counter++]);
+	{
+		if (ft_check_not_digit_character(argv[counter]) == 1)
+		{
+			free(array_int);
+			return (NULL);
+		}
 
+		array_int[counter_for_array] = ft_atoi(argv[counter]);
+		counter++;
+		counter_for_array++;
+	}
 	order_array_quicksort(array_int, argc - 1);
 	return (array_int);
 }
@@ -99,7 +122,10 @@ int	main(int argc, char *argv[])
 		return (0);
 	array_int = process_arguments(argc, argv);
 	if (!array_int)
+	{
+		printf("Invalid argument");
 		return (1);
+	}
 	first_node = create_and_link_nodes(array_int, argc, argv);
 	if (!first_node)
 	{
