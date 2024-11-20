@@ -107,7 +107,7 @@ void	do_things(t_list *first_node_a, int counter)
 		return;
 	}
 
-	chunked_quick_sort(&first_node_a, &first_node_b, counter);
+	apply_algorithm(&first_node_a, &first_node_b, counter);
 	ft_lstiter(first_node_a, print_content);
     printf("\n");
 	ft_lstclear(&first_node_a, free);
@@ -135,6 +135,6 @@ int	main(int argc, char *argv[])
 	ft_lstiter(first_node, print_content);
 	printf("\n");
 	do_things(first_node, argc - 1);
-	free(array_int);
+	//free(array_int);
 	return (0);
 }
