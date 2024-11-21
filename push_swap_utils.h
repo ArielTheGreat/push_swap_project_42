@@ -34,5 +34,12 @@ void	do_things(t_list *first_node_a, int counter);
 t_list	*create_node(int number_char);
 void	order_array_quicksort(int *array_int, int length_array);
 void	apply_algorithm(t_list **stack_a, t_list **stack_b, int counter);
+void    print_content(void *content);
+t_list	*create_and_link_nodes(int *array_int, int argc, char **argv);
+t_list *find_biggest_number(t_list **stack);
+int     top_instructions(t_list ** stack_b, t_list  *biggest_number);
+int     bottom_instructions(t_list ** stack_b, t_list *biggest_number);
+int     *process_arguments(int argc, char *argv[]);
+int     search_in_array(int *integer_list, int size, char *value);
 
 #endif

@@ -60,42 +60,6 @@ int	*process_arguments(int argc, char *argv[])
 	return (array_int);
 }
 
-t_list	*create_and_link_nodes(int *array_int, int argc, char **argv)
-{
-	t_list	*first_node = NULL;
-	t_list	*last_node = NULL;
-	int		counter = 1;
-
-	while (counter < argc)
-	{
-		int index = search_in_array(array_int, argc - 1, argv[counter]);
-		if (index == -1)
-		{
-			ft_lstclear(&first_node, free); // Cleanup if search fails
-			free(array_int);
-			return (NULL);
-		}
-		t_list *new_node = create_node(index);
-		if (!new_node)
-		{
-			ft_lstclear(&first_node, free);
-			return (NULL);
-		}
-		if (counter == 1)
-			first_node = new_node;
-		else
-			last_node->next = new_node;
-		last_node = new_node;
-		counter++;
-	}
-	return (first_node);
-}
-
-void print_content(void *content)
-{
-    printf("%d ", *(int *)content);
-}
-
 void	do_things(t_list *first_node_a, int counter)
 {
 	t_list	*first_node_b = NULL;
@@ -103,7 +67,7 @@ void	do_things(t_list *first_node_a, int counter)
 
 	if (is_sorted == 1)
 	{
-		ft_lstclear(&first_node_a, free); // Free the list if already sorted
+		ft_lstclear(&first_node_a, free);
 		return;
 	}
 
@@ -111,30 +75,4 @@ void	do_things(t_list *first_node_a, int counter)
 	ft_lstiter(first_node_a, print_content);
     printf("\n");
 	ft_lstclear(&first_node_a, free);
-}
-
-int	main(int argc, char *argv[])
-{
-	int		*array_int;
-	t_list	*first_node;
-
-	if (argc < 2)
-		return (0);
-	array_int = process_arguments(argc, argv);
-	if (!array_int)
-	{
-		printf("Invalid argument");
-		return (1);
-	}
-	first_node = create_and_link_nodes(array_int, argc, argv);
-	if (!first_node)
-	{
-		free(array_int);
-		return (1);
-	}
-	ft_lstiter(first_node, print_content);
-	printf("\n");
-	do_things(first_node, argc - 1);
-	//free(array_int);
-	return (0);
 }

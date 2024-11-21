@@ -57,7 +57,7 @@ void	pa(t_list **first_node_a, t_list **first_node_b)
 	tmp = (*first_node_b)->next;
 	ft_lstadd_front(first_node_a, *first_node_b);
 	*first_node_b = tmp;
-	printf("%s\n", "PA");
+	//printf("%s\n", "PA");
 }
 
 void	pb(t_list **first_node_b, t_list **first_node_a)
@@ -69,5 +69,5 @@ void	pb(t_list **first_node_b, t_list **first_node_a)
 	tmp = (*first_node_a)->next;
 	ft_lstadd_front(first_node_b, *first_node_a);
 	*first_node_a = tmp;
-	printf("%s\n", "PB");
+	//printf("%s\n", "PB");
 }
