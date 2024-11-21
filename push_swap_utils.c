@@ -84,22 +84,41 @@ int square_root(int x) {
     return ans;
 }
 
-int find_bigger(t_list **stack_b)
+int bottom_instructions(t_list ** stack_b, int biggest_number)
 {
-	int first_number;
 
-	first_number = 0;
-	
 }
 
-void sort_back_to_a(t_list **stack_a, t_list **stack_b)
+int top_instructions(t_list ** stack_b, int biggest_number)
 {
-	int max_size_int;
+
+}
+
+void sort_back_to_a(t_list **stack_a, t_list **stack_b, int biggest_number)
+{
+	int number_bottom_instructions;
+	int number_top_instructions;
+	int i;
 
 	while(ft_lstsize(*stack_b) != 0)
 	{
-		max_size_int = find_bigger(stack_b);
-
+		number_bottom_instructions = bottom_instructions(stack_b, biggest_number);
+		number_top_instructions = top_instructions(stack_b, biggest_number);
+		i = 0;
+		if (number_bottom_instructions > number_top_instructions)
+		{
+			while(i < number_top_instructions)
+			{
+				rrb(stack_b);
+				i++;
+			}
+		}else if(number_top_instructions > number_bottom_instructions){
+			while(i < number_bottom_instructions)
+			{
+				rb(stack_b);
+				i++;
+			}
+		}
 		pa(stack_a, stack_b);
 	}
 }
@@ -128,5 +147,5 @@ void apply_algorithm(t_list **stack_a, t_list **stack_b, int counter)
 			ra(stack_a);
 		}
 	}
-	sort_back_to_a(stack_a, stack_b);
+	sort_back_to_a(stack_a, stack_b, counter - 1);
 }
