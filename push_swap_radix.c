@@ -14,20 +14,25 @@
 
 int	search_in_array(int *integer_list, int size, char *value)
 {
-    int counter = 0;
-    int integer = ft_atoi(value);
+	int	counter;
+	int	integer;
 
-    while (counter < size && integer_list[counter] != integer)
-        counter++;
-    return (counter < size ? counter : -1);
+	counter = 0;
+	integer = ft_atoi(value);
+	while (counter < size && integer_list[counter] != integer)
+		counter++;
+	if (counter < size)
+		return (counter);
+	else
+		return (-1);
 }
 
-int ft_check_not_digit_character(char *str)
+int	ft_check_not_digit_character(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(str[i] != '\0')
+	while (str[i] != '\0')
 	{
 		if (!ft_isdigit(str[i]) && str[i] != '+' && str[i] != '-')
 			return (1);
@@ -38,12 +43,15 @@ int ft_check_not_digit_character(char *str)
 
 int	*process_arguments(int argc, char *argv[])
 {
-	int	*array_int = malloc((argc - 1) * sizeof(int));
-	int	counter = 1;
-	int	counter_for_array = 0;
+	int	*array_int;
+	int	counter;
+	int	counter_for_array;
 
+	array_int = malloc((argc - 1) * sizeof(int));
 	if (!array_int)
 		return (NULL);
+	counter = 1;
+	counter_for_array = 0;
 	while (counter < argc)
 	{
 		if (ft_check_not_digit_character(argv[counter]) == 1)
@@ -51,7 +59,6 @@ int	*process_arguments(int argc, char *argv[])
 			free(array_int);
 			return (NULL);
 		}
-
 		array_int[counter_for_array] = ft_atoi(argv[counter]);
 		counter++;
 		counter_for_array++;
@@ -62,17 +69,16 @@ int	*process_arguments(int argc, char *argv[])
 
 void	do_things(t_list *first_node_a, int counter)
 {
-	t_list	*first_node_b = NULL;
-	int		is_sorted = check_order_min_to_max(first_node_a);
+	t_list	*first_node_b;
+	int		is_sorted;
 
+	first_node_b = NULL;
+	is_sorted = check_order_min_to_max(first_node_a);
 	if (is_sorted == 1)
 	{
 		ft_lstclear(&first_node_a, free);
-		return;
+		return ;
 	}
-
 	apply_algorithm(&first_node_a, &first_node_b, counter);
-	ft_lstiter(first_node_a, print_content);
-    printf("\n");
 	ft_lstclear(&first_node_a, free);
 }

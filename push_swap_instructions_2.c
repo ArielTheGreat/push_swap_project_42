@@ -14,32 +14,30 @@
 
 void	ra(t_list **first_node_a)
 {
+	t_list	*tmp;
+	t_list	*last_node;
+
 	if (!*first_node_a || !(*first_node_a)->next)
-		return;
-
-	t_list	*tmp = (*first_node_a)->next;
-	t_list	*last_node = ft_lstlast(*first_node_a);
-
+		return ;
+	tmp = (*first_node_a)->next;
+	last_node = ft_lstlast(*first_node_a);
 	last_node->next = *first_node_a;
 	(*first_node_a)->next = NULL;
 	*first_node_a = tmp;
-
-	//printf("RA\n");
 }
 
 void	rb(t_list **first_node_b)
 {
+	t_list	*tmp;
+	t_list	*last_node;
+
 	if (!*first_node_b || !(*first_node_b)->next)
-		return;
-
-	t_list	*tmp = (*first_node_b)->next;
-	t_list	*last_node = ft_lstlast(*first_node_b);
-
+		return ;
+	tmp = (*first_node_b)->next;
+	last_node = ft_lstlast(*first_node_b);
 	last_node->next = *first_node_b;
 	(*first_node_b)->next = NULL;
 	*first_node_b = tmp;
-
-	//printf("RB\n");
 }
 
 void	rr(t_list **first_node_a, t_list **first_node_b)
@@ -50,36 +48,32 @@ void	rr(t_list **first_node_a, t_list **first_node_b)
 
 void	rra(t_list **first_node_a)
 {
+	t_list	*last_node;
+	t_list	*tmp;
+
 	if (!*first_node_a || !(*first_node_a)->next)
-		return;
-
-	t_list	*last_node = ft_lstlast(*first_node_a);
-	t_list	*tmp = *first_node_a;
-
+		return ;
+	last_node = ft_lstlast(*first_node_a);
+	tmp = *first_node_a;
 	while (tmp->next != last_node)
 		tmp = tmp->next;
-	
 	last_node->next = *first_node_a;
 	tmp->next = NULL;
 	*first_node_a = last_node;
-
-	printf("RRA\n");
 }
 
 void	rrb(t_list **first_node_b)
 {
+	t_list	*last_node;
+	t_list	*tmp;
+
 	if (!*first_node_b || !(*first_node_b)->next)
-		return;
-
-	t_list	*last_node = ft_lstlast(*first_node_b);
-	t_list	*tmp = *first_node_b;
-
+		return ;
+	last_node = ft_lstlast(*first_node_b);
+	tmp = *first_node_b;
 	while (tmp->next != last_node)
 		tmp = tmp->next;
-
 	last_node->next = *first_node_b;
 	tmp->next = NULL;
 	*first_node_b = last_node;
-
-	//printf("RRB\n");
 }

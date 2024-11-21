@@ -12,7 +12,7 @@
 
 #include "push_swap_utils.h"
 
-int bottom_instructions(t_list ** stack_b, t_list *biggest_number)
+int	down_instructions(t_list **stack_b, t_list *biggest_number)
 {
 	int		moves;
 	t_list	*current;
@@ -29,7 +29,7 @@ int bottom_instructions(t_list ** stack_b, t_list *biggest_number)
 	return (moves);
 }
 
-int top_instructions(t_list ** stack_b, t_list  *biggest_number)
+int	top_instructions(t_list **stack_b, t_list *biggest_number)
 {
 	int		moves;
 	t_list	*current;
@@ -44,8 +44,9 @@ int top_instructions(t_list ** stack_b, t_list  *biggest_number)
 	return (moves);
 }
 
-t_list *find_biggest_number(t_list **stack) {
-    t_list	*current;
+t_list	*find_biggest_number(t_list **stack)
+{
+	t_list	*current;
 	t_list	*max_node;
 
 	current = *stack;
@@ -61,21 +62,25 @@ t_list *find_biggest_number(t_list **stack) {
 
 t_list	*create_and_link_nodes(int *array_int, int argc, char **argv)
 {
-	t_list	*first_node = NULL;
-	t_list	*last_node = NULL;
+	t_list	*first_node;
+	t_list	*last_node;
+	t_list	*new_node;
 	int		counter;
-	
+	int		index;
+
+	first_node = NULL;
+	last_node = NULL;
 	counter = 0;
 	while (counter++ < argc)
 	{
-		int index = search_in_array(array_int, argc - 1, argv[counter]);
+		index = search_in_array(array_int, argc - 1, argv[counter]);
 		if (index == -1)
 		{
 			ft_lstclear(&first_node, free);
 			free(array_int);
 			return (NULL);
 		}
-		t_list *new_node = create_node(index);
+		new_node = create_node(index);
 		if (!new_node)
 		{
 			ft_lstclear(&first_node, free);
@@ -88,9 +93,4 @@ t_list	*create_and_link_nodes(int *array_int, int argc, char **argv)
 		last_node = new_node;
 	}
 	return (first_node);
-}
-
-void print_content(void *content)
-{
-    printf("%d ", *(int *)content);
 }

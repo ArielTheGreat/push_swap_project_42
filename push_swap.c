@@ -34,6 +34,6 @@ int	main(int argc, char *argv[])
 	ft_lstiter(first_node, print_content);
 	printf("\n");
 	do_things(first_node, argc - 1);
-	ft_lstclear(first_node, free);
+	ft_lstclear(&first_node, free);
 	return (0);
 }

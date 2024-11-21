@@ -17,3 +17,8 @@ void	rrr(t_list **first_node_a, t_list **first_node_b)
 	rra(first_node_a);
 	rrb(first_node_b);
 }
+
+void	print_content(void *content)
+{
+	printf("%d ", *(int *)content);
+}
