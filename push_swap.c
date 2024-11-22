@@ -35,6 +35,7 @@ int	main(int argc, char *argv[])
 		free(array_int);
 		return (1);
 	}
+	free(array_int);
 	do_things(first_node, argc - 1);
 	atexit(leaks);
 	return (0);

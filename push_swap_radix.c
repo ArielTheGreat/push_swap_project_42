@@ -77,6 +77,7 @@ void	do_things(t_list *first_node_a, int counter)
 	int		is_sorted;
 
 	first_node_b = NULL;
+	counter = 1;
 	is_sorted = check_order_min_to_max(first_node_a);
 	if (is_sorted == 1)
 	{
