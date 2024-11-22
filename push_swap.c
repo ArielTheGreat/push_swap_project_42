@@ -35,12 +35,7 @@ int	main(int argc, char *argv[])
 		free(array_int);
 		return (1);
 	}
-	ft_lstiter(first_node, print_content);
-	printf("\n");
 	do_things(first_node, argc - 1);
-	ft_lstiter(first_node, print_content);
-	printf("\n");
 	atexit(leaks);
-	ft_lstclear(&first_node, free);
 	return (0);
 }

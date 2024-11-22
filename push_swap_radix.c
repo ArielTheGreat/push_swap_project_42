@@ -84,4 +84,5 @@ void	do_things(t_list *first_node_a, int counter)
 		return ;
 	}
 	apply_algorithm(&first_node_a, &first_node_b, counter);
+	ft_lstclear(&first_node_a, free);
 }
