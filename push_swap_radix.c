@@ -26,7 +26,6 @@ int	search_in_array(int *integer_list, int size, char *value)
 		return (counter);
 	else
 	{
-		printf("my values %s:", value);
 		return (-1);
 	}
 }

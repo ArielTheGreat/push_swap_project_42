@@ -41,5 +41,8 @@ int		top_instructions(t_list **stack_b, t_list *biggest_number);
 int		down_instructions(t_list **stack_b, t_list *biggest_number);
 int		*process_arguments(int argc, char *argv[]);
 int		search_in_array(int *integer_list, int size, char *value);
+t_list	*create_and_link_nodes(int *array_int, int argc, char **argv);
+int		append_and_check(t_list **first_node, t_list **last_node,
+			int *array_int, char *arg);
 
 #endif

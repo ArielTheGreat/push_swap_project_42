@@ -60,41 +60,32 @@ t_list	*find_biggest_number(t_list **stack)
 	return (max_node);
 }
 
-t_list	*create_and_link_nodes(int *array_int, int argc, char **argv)
+int	append_node(t_list **first_node, t_list **last_node, int index)
 {
-	t_list	*first_node;
-	t_list	*last_node;
 	t_list	*new_node;
-	int		counter;
-	int		index;
 
-	first_node = NULL;
-	last_node = NULL;
-	counter = 1;
-	index = 0;
-	while (counter < argc)
-	{
-		if (counter < argc)
-			index = search_in_array(array_int, argc - 1, argv[counter]);
-		if (index == -1)
-		{
-			ft_lstclear(&first_node, free);
-			if (array_int && *array_int)
-				free(array_int);
-			return (NULL);
-		}
-		new_node = create_node(index);
-		if (!new_node)
-		{
-			ft_lstclear(&first_node, free);
-			return (NULL);
-		}
-		if (counter == 1)
-			first_node = new_node;
-		else
-			last_node->next = new_node;
-		last_node = new_node;
-		counter++;
-	}
-	return (first_node);
+	new_node = create_node(index);
+	if (!new_node)
+		return (0);
+	if (*first_node == NULL)
+		*first_node = new_node;
+	else
+		(*last_node)->next = new_node;
+	*last_node = new_node;
+	return (1);
+}
+
+int	append_and_check(t_list **first_node, t_list **last_node,
+	int *array_int, char *arg)
+{
+	int	index;
+	int	array_size;
+
+	array_size = 0;
+	while (array_int[array_size] != '\0')
+		array_size++;
+	index = search_in_array(array_int, array_size, arg);
+	if (index == -1)
+		return (0);
+	return (append_node(first_node, last_node, index));
 }

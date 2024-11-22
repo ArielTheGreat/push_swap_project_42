@@ -12,10 +12,30 @@
 
 #include "push_swap_utils.h"
 
-void leaks()
+t_list	*create_and_link_nodes(int *array_int, int argc, char **argv)
 {
-	system("leaks push_swap");
+	t_list	*first_node;
+	t_list	*last_node;
+	int		counter;
+
+	first_node = NULL;
+	last_node = NULL;
+	counter = 1;
+	while (counter < argc)
+	{
+		if (!append_and_check(&first_node, &last_node,
+				array_int, argv[counter]))
+		{
+			ft_lstclear(&first_node, free);
+			if (array_int && *array_int)
+				free(array_int);
+			return (NULL);
+		}
+		counter++;
+	}
+	return (first_node);
 }
+
 int	main(int argc, char *argv[])
 {
 	int		*array_int;
@@ -37,6 +57,5 @@ int	main(int argc, char *argv[])
 	}
 	free(array_int);
 	do_things(first_node, argc - 1);
-	atexit(leaks);
 	return (0);
 }
