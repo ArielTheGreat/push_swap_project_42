@@ -18,13 +18,17 @@ int	search_in_array(int *integer_list, int size, char *value)
 	int	integer;
 
 	counter = 0;
-	integer = ft_atoi(value);
+	if (value)
+		integer = ft_atoi(value);
 	while (counter < size && integer_list[counter] != integer)
 		counter++;
 	if (counter < size)
 		return (counter);
 	else
+	{
+		printf("my values %s:", value);
 		return (-1);
+	}
 }
 
 int	ft_check_not_digit_character(char *str)
@@ -80,5 +84,4 @@ void	do_things(t_list *first_node_a, int counter)
 		return ;
 	}
 	apply_algorithm(&first_node_a, &first_node_b, counter);
-	ft_lstclear(&first_node_a, free);
 }

@@ -12,6 +12,10 @@
 
 #include "push_swap_utils.h"
 
+void leaks()
+{
+	system("leaks push_swap");
+}
 int	main(int argc, char *argv[])
 {
 	int		*array_int;
@@ -34,6 +38,9 @@ int	main(int argc, char *argv[])
 	ft_lstiter(first_node, print_content);
 	printf("\n");
 	do_things(first_node, argc - 1);
+	ft_lstiter(first_node, print_content);
+	printf("\n");
+	atexit(leaks);
 	ft_lstclear(&first_node, free);
 	return (0);
 }

@@ -70,14 +70,17 @@ t_list	*create_and_link_nodes(int *array_int, int argc, char **argv)
 
 	first_node = NULL;
 	last_node = NULL;
-	counter = 0;
-	while (counter++ < argc)
+	counter = 1;
+	index = 0;
+	while (counter < argc)
 	{
-		index = search_in_array(array_int, argc - 1, argv[counter]);
+		if (counter < argc)
+			index = search_in_array(array_int, argc - 1, argv[counter]);
 		if (index == -1)
 		{
 			ft_lstclear(&first_node, free);
-			free(array_int);
+			if (array_int && *array_int)
+				free(array_int);
 			return (NULL);
 		}
 		new_node = create_node(index);
@@ -91,6 +94,7 @@ t_list	*create_and_link_nodes(int *array_int, int argc, char **argv)
 		else
 			last_node->next = new_node;
 		last_node = new_node;
+		counter++;
 	}
 	return (first_node);
 }
