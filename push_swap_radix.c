@@ -47,6 +47,22 @@ int	ft_check_not_digit_character(char *str)
 int	*process_arguments(int argc, char *argv[])
 {
 	int	*array_int;
+
+	array_int = allocate_and_validate(argc, argv);
+	if (!array_int)
+		return (NULL);
+	if (!check_for_duplicates(array_int, argc - 1))
+	{
+		free(array_int);
+		return (NULL);
+	}
+	order_array_quicksort(array_int, argc - 1);
+	return (array_int);
+}
+
+int	*allocate_and_validate(int argc, char *argv[])
+{
+	int	*array_int;
 	int	counter;
 	int	counter_for_array;
 
@@ -57,12 +73,8 @@ int	*process_arguments(int argc, char *argv[])
 	counter_for_array = 0;
 	while (counter < argc)
 	{
-		if (ft_check_not_digit_character(argv[counter]) == 1)
-		{
-			free(array_int);
-			return (NULL);
-		}
-		if (ft_check_is_int(argv[counter]) == 0)
+		if (ft_check_not_digit_character(argv[counter]) == 1
+			|| ft_check_is_int(argv[counter]) == 0)
 		{
 			free(array_int);
 			return (NULL);
@@ -71,21 +83,6 @@ int	*process_arguments(int argc, char *argv[])
 		counter++;
 		counter_for_array++;
 	}
-	counter_for_array = 0;
-	while(counter_for_array < argc - 1)
-	{
-		counter = counter_for_array + 1;
-		while(counter < argc - 1)
-		{
-			if (array_int[counter] == array_int[counter_for_array])
-			{
-				return (NULL);
-			}
-			counter++;
-		}
-		counter_for_array++;
-	}
-	order_array_quicksort(array_int, argc - 1);
 	return (array_int);
 }
 

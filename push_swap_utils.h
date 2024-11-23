@@ -45,5 +45,6 @@ t_list	*create_and_link_nodes(int *array_int, int argc, char **argv);
 int		append_and_check(t_list **first_node, t_list **last_node,
 			int *array_int, char *arg);
 int		ft_check_is_int(const char *str);
+int		check_for_duplicates(int *array_int, int size);
 
 #endif

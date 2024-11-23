@@ -12,6 +12,26 @@
 
 #include "push_swap_utils.h"
 
+int	check_for_duplicates(int *array_int, int size)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < size)
+	{
+		j = i + 1;
+		while (j < size)
+		{
+			if (array_int[i] == array_int[j])
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
 int	ft_check_is_int(const char *str)
 {
 	int		sign;
