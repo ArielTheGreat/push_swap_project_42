@@ -44,12 +44,28 @@ int	ft_check_not_digit_character(char *str)
 	return (0);
 }
 
+int calculate_parameters(int argc, char *argv[])
+{
+	int i;
+	char *words;
+
+	i = 1;
+	while(i < argc)
+	{
+		words = ft_split(argv[i], ' ');
+		
+		i++;
+		free(words);
+	}
+}
+
 int	*allocate_and_validate(int argc, char *argv[])
 {
 	int	*array_int;
 	int	counter;
 	int	counter_for_array;
 
+	calculate_parameters(argc, argv);
 	array_int = malloc((argc - 1) * sizeof(int));
 	if (!array_int)
 		return (NULL);
