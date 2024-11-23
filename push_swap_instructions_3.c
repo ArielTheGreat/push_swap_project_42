@@ -16,6 +16,7 @@ void	rrr(t_list **first_node_a, t_list **first_node_b)
 {
 	rra(first_node_a);
 	rrb(first_node_b);
+	write(1,"RRR\n",4);
 }
 
 void	print_content(void *content)

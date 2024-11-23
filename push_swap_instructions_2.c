@@ -24,6 +24,7 @@ void	ra(t_list **first_node_a)
 	last_node->next = *first_node_a;
 	(*first_node_a)->next = NULL;
 	*first_node_a = tmp;
+	write(1,"RA\n",3);
 }
 
 void	rb(t_list **first_node_b)
@@ -38,12 +39,14 @@ void	rb(t_list **first_node_b)
 	last_node->next = *first_node_b;
 	(*first_node_b)->next = NULL;
 	*first_node_b = tmp;
+	write(1,"RB\n",3);
 }
 
 void	rr(t_list **first_node_a, t_list **first_node_b)
 {
 	ra(first_node_a);
 	rb(first_node_b);
+	write(1,"RR\n",3);
 }
 
 void	rra(t_list **first_node_a)
@@ -60,6 +63,7 @@ void	rra(t_list **first_node_a)
 	last_node->next = *first_node_a;
 	tmp->next = NULL;
 	*first_node_a = last_node;
+	write(1,"RRA\n",4);
 }
 
 void	rrb(t_list **first_node_b)
@@ -76,4 +80,5 @@ void	rrb(t_list **first_node_b)
 	last_node->next = *first_node_b;
 	tmp->next = NULL;
 	*first_node_b = last_node;
+	write(1, "RRB\n", 4);
 }
