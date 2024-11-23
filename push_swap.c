@@ -74,7 +74,7 @@ int	main(int argc, char *argv[])
 	array_int = process_arguments(argc, argv);
 	if (!array_int)
 	{
-		write(1,"Error\n",6);
+		write(1, "Error\n", 6);
 		return (1);
 	}
 	first_node = create_and_link_nodes(array_int, argc, argv);
