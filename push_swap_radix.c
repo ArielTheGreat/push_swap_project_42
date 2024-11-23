@@ -44,7 +44,7 @@ int	ft_check_not_digit_character(char *str)
 	return (0);
 }
 
-int check_validity(char *elements, int *counter_arguments)
+int check_validity(char **elements, int *counter_arguments)
 {
 	int i;
 
@@ -65,7 +65,7 @@ int check_validity(char *elements, int *counter_arguments)
 int calculate_parameters(int argc, char *argv[])
 {
 	int i;
-	char *words;
+	char **words;
 	int counter_arguments;
 
 	i = 1;
@@ -89,7 +89,7 @@ int	*allocate_and_validate(int argc, char *argv[])
 	int	*array_int;
 	int	counter;
 	int	counter_for_array;
-	char *words;
+	char **words;
 	int i;
 
 	counter_for_array = calculate_parameters(argc, argv);
