@@ -44,7 +44,7 @@ int	ft_check_not_digit_character(char *str)
 	return (0);
 }
 
-int check_validity(char *elements)
+int check_validity(char *elements, int *counter_arguments)
 {
 	int i;
 
@@ -56,6 +56,7 @@ int check_validity(char *elements)
 		{
 			return (1);
 		}
+		*counter_arguments = *counter_arguments + 1;
 		i++;
 	}
 	return (0);
@@ -68,10 +69,11 @@ int calculate_parameters(int argc, char *argv[])
 	int counter_arguments;
 
 	i = 1;
+	counter_arguments = 0;
 	while(i < argc)
 	{
 		words = ft_split(argv[i], ' ');
-		if (check_validity(words) == 1)
+		if (check_validity(words, &counter_arguments) == 1)
 		{
 			return (0);
 			free(words);
@@ -79,6 +81,7 @@ int calculate_parameters(int argc, char *argv[])
 		free(words);
 		i++;
 	}
+	return (counter_arguments);
 }
 
 int	*allocate_and_validate(int argc, char *argv[])
@@ -86,25 +89,29 @@ int	*allocate_and_validate(int argc, char *argv[])
 	int	*array_int;
 	int	counter;
 	int	counter_for_array;
+	char *words;
+	int i;
 
-	if (calculate_parameters(argc, argv) == 0)
+	counter_for_array = calculate_parameters(argc, argv);
+	if (counter_for_array == 0)
 		return (NULL);
-	array_int = malloc((argc - 1) * sizeof(int));
+	array_int = malloc((counter_for_array) * sizeof(int));
 	if (!array_int)
 		return (NULL);
 	counter = 1;
 	counter_for_array = 0;
 	while (counter < argc)
 	{
-		if (ft_check_not_digit_character(argv[counter]) == 1
-			|| ft_check_is_int(argv[counter]) == 0)
+		words = ft_split(argv[counter], ' ');
+		i = 0;
+		while(words[i] != NULL)
 		{
-			free(array_int);
-			return (NULL);
+			array_int[counter_for_array] = ft_atoi(words[i]);
+			counter_for_array++;
+			i++;
 		}
-		array_int[counter_for_array] = ft_atoi(argv[counter]);
+		free(words);
 		counter++;
-		counter_for_array++;
 	}
 	return (array_int);
 }
