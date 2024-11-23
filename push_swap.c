@@ -12,6 +12,34 @@
 
 #include "push_swap_utils.h"
 
+int	ft_check_is_int(const char *str)
+{
+	int		sign;
+	long	result;
+	int		i;
+
+	i = 0;
+	result = 0;
+	sign = 1;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sign = -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		if (result > (LONG_MAX - (str[i] - '0')) / 10)
+			return (0);
+		result = result * 10 + (str[i] - '0');
+		i++;
+	}
+	result *= sign;
+	if (result > INT_MAX || result < INT_MIN)
+		return (0);
+	return (1);
+}
+
 t_list	*create_and_link_nodes(int *array_int, int argc, char **argv)
 {
 	t_list	*first_node;

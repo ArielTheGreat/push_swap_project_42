@@ -15,6 +15,7 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+#include <limits.h>
 # include "libft/libft.h"
 
 void	sa(t_list *first_node_a);
@@ -43,5 +44,6 @@ int		search_in_array(int *integer_list, int size, char *value);
 t_list	*create_and_link_nodes(int *array_int, int argc, char **argv);
 int		append_and_check(t_list **first_node, t_list **last_node,
 			int *array_int, char *arg);
+int		ft_check_is_int(const char *str);
 
 #endif

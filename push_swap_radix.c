@@ -62,6 +62,11 @@ int	*process_arguments(int argc, char *argv[])
 			free(array_int);
 			return (NULL);
 		}
+		if (ft_check_is_int(argv[counter]) == 0)
+		{
+			free(array_int);
+			return (NULL);
+		}
 		array_int[counter_for_array] = ft_atoi(argv[counter]);
 		counter++;
 		counter_for_array++;
@@ -69,7 +74,7 @@ int	*process_arguments(int argc, char *argv[])
 	counter_for_array = 0;
 	while(counter_for_array < argc - 1)
 	{
-		counter = counter_for_array;
+		counter = counter_for_array + 1;
 		while(counter < argc - 1)
 		{
 			if (array_int[counter] == array_int[counter_for_array])
