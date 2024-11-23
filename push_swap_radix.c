@@ -44,22 +44,6 @@ int	ft_check_not_digit_character(char *str)
 	return (0);
 }
 
-int	*process_arguments(int argc, char *argv[])
-{
-	int	*array_int;
-
-	array_int = allocate_and_validate(argc, argv);
-	if (!array_int)
-		return (NULL);
-	if (!check_for_duplicates(array_int, argc - 1))
-	{
-		free(array_int);
-		return (NULL);
-	}
-	order_array_quicksort(array_int, argc - 1);
-	return (array_int);
-}
-
 int	*allocate_and_validate(int argc, char *argv[])
 {
 	int	*array_int;
@@ -83,6 +67,22 @@ int	*allocate_and_validate(int argc, char *argv[])
 		counter++;
 		counter_for_array++;
 	}
+	return (array_int);
+}
+
+int	*process_arguments(int argc, char *argv[])
+{
+	int	*array_int;
+
+	array_int = allocate_and_validate(argc, argv);
+	if (!array_int)
+		return (NULL);
+	if (!check_for_duplicates(array_int, argc - 1))
+	{
+		free(array_int);
+		return (NULL);
+	}
+	order_array_quicksort(array_int, argc - 1);
 	return (array_int);
 }
 
