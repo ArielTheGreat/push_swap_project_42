@@ -12,15 +12,12 @@
 
 #include "push_swap_utils.h"
 
-int	search_in_array(int *integer_list, int size, char *value)
+int	search_in_array(int *integer_list, int size, int value)
 {
 	int	counter;
-	int	integer;
 
 	counter = 0;
-	if (value)
-		integer = ft_atoi(value);
-	while (counter < size && integer_list[counter] != integer)
+	while (counter < size && integer_list[counter] != value)
 		counter++;
 	if (counter < size)
 		return (counter);
@@ -50,7 +47,8 @@ int check_validity(char **elements, int *counter_arguments)
 
 	i = 0;
 	while(elements[i] != NULL)
-	{
+	{	
+		printf("AA:%s", elements[i]);
 		if (ft_check_not_digit_character(elements[i]) == 1
 			|| ft_check_is_int(elements[i]) == 0)
 		{
@@ -84,7 +82,7 @@ int calculate_parameters(int argc, char *argv[])
 	return (counter_arguments);
 }
 
-int	*allocate_and_validate(int argc, char *argv[])
+int	*allocate_and_validate(int argc, char *argv[], int *size)
 {
 	int	*array_int;
 	int	counter;
@@ -92,10 +90,10 @@ int	*allocate_and_validate(int argc, char *argv[])
 	char **words;
 	int i;
 
-	counter_for_array = calculate_parameters(argc, argv);
-	if (counter_for_array == 0)
+	*size = calculate_parameters(argc, argv);
+	if (*size == 0)
 		return (NULL);
-	array_int = malloc((counter_for_array) * sizeof(int));
+	array_int = malloc((*size) * sizeof(int));
 	if (!array_int)
 		return (NULL);
 	counter = 1;
@@ -116,26 +114,27 @@ int	*allocate_and_validate(int argc, char *argv[])
 	return (array_int);
 }
 
-int	*process_arguments(int argc, char *argv[])
+int	*process_arguments(int argc, char *argv[], int *size)
 {
 	int	*array_int;
 
-	array_int = allocate_and_validate(argc, argv);
+	*size = 0;
+	array_int = allocate_and_validate(argc, argv, size);
 	if (!array_int)
 		return (NULL);
-	if (!check_for_duplicates(array_int, argc - 1))
+	if (!check_for_duplicates(array_int, *size))
 	{
 		free(array_int);
 		return (NULL);
 	}
-	order_array_quicksort(array_int, argc - 1);
 	return (array_int);
 }
 
-void	do_things(t_list *first_node_a, int counter)
+void	do_things(t_list *first_node_a)
 {
 	t_list	*first_node_b;
 	int		is_sorted;
+	int		counter;
 
 	first_node_b = NULL;
 	counter = 1;

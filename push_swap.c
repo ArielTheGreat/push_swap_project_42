@@ -60,7 +60,7 @@ int	ft_check_is_int(const char *str)
 	return (1);
 }
 
-t_list	*create_and_link_nodes(int *array_int, int argc, char **argv)
+t_list	*create_and_link_nodes(int *array_int, int argc, int *argv)
 {
 	t_list	*first_node;
 	t_list	*last_node;
@@ -68,7 +68,7 @@ t_list	*create_and_link_nodes(int *array_int, int argc, char **argv)
 
 	first_node = NULL;
 	last_node = NULL;
-	counter = 1;
+	counter = 0;
 	while (counter < argc)
 	{
 		if (!append_and_check(&first_node, &last_node,
@@ -86,24 +86,39 @@ t_list	*create_and_link_nodes(int *array_int, int argc, char **argv)
 
 int	main(int argc, char *argv[])
 {
+	int		*array_int_sorted;
 	int		*array_int;
 	t_list	*first_node;
+	int size;
+	int i;
 
+	i = 0;
 	if (argc < 2)
 		return (0);
-	array_int = process_arguments(argc, argv);
+	array_int = process_arguments(argc, argv, &size);
+	if (array_int)
+	{
+		array_int_sorted = malloc((size) * sizeof(int));
+		while(i < size)
+		{
+			array_int_sorted[i] = array_int[i];
+			i++;
+		}
+		order_array_quicksort(array_int_sorted, size);
+	}
 	if (!array_int)
 	{
 		write(1, "Error\n", 6);
 		return (1);
 	}
-	first_node = create_and_link_nodes(array_int, argc, argv);
+	first_node = create_and_link_nodes(array_int_sorted, size, array_int);
 	if (!first_node)
 	{
-		free(array_int);
+		free(array_int_sorted);
 		return (1);
 	}
+	free(array_int_sorted);
 	free(array_int);
-	do_things(first_node, argc - 1);
+	do_things(first_node);
 	return (0);
 }

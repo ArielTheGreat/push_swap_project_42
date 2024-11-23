@@ -76,7 +76,7 @@ int	append_node(t_list **first_node, t_list **last_node, int index)
 }
 
 int	append_and_check(t_list **first_node, t_list **last_node,
-	int *array_int, char *arg)
+	int *array_int, int number)
 {
 	int	index;
 	int	array_size;
@@ -84,7 +84,7 @@ int	append_and_check(t_list **first_node, t_list **last_node,
 	array_size = 0;
 	while (array_int[array_size] != '\0')
 		array_size++;
-	index = search_in_array(array_int, array_size, arg);
+	index = search_in_array(array_int, array_size, number);
 	if (index == -1)
 		return (0);
 	return (append_node(first_node, last_node, index));

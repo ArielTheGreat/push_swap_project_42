@@ -31,19 +31,18 @@ void	rrb(t_list **first_node_b);
 void	rrr(t_list **first_node_a, t_list **first_node_b);
 
 int		check_order_min_to_max(t_list *first_node);
-void	do_things(t_list *first_node_a, int counter);
+void	do_things(t_list *first_node_a);
 t_list	*create_node(int number_char);
 void	order_array_quicksort(int *array_int, int length_array);
 void	apply_algorithm(t_list **stack_a, t_list **stack_b, int counter);
-t_list	*create_and_link_nodes(int *array_int, int argc, char **argv);
 t_list	*find_biggest_number(t_list **stack);
 int		top_instructions(t_list **stack_b, t_list *biggest_number);
 int		down_instructions(t_list **stack_b, t_list *biggest_number);
-int		*process_arguments(int argc, char *argv[]);
-int		search_in_array(int *integer_list, int size, char *value);
-t_list	*create_and_link_nodes(int *array_int, int argc, char **argv);
+int		*process_arguments(int argc, char *argv[], int *size);
+int		search_in_array(int *integer_list, int size, int value);
+t_list	*create_and_link_nodes(int *array_int, int argc, int *argv);
 int		append_and_check(t_list **first_node, t_list **last_node,
-			int *array_int, char *arg);
+			int *array_int, int number);
 int		ft_check_is_int(const char *str);
 int		check_for_duplicates(int *array_int, int size);
 
