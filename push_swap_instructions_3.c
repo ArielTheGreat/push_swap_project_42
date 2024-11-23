@@ -18,8 +18,3 @@ void	rrr(t_list **first_node_a, t_list **first_node_b)
 	rrb(first_node_b);
 	write(1,"RRR\n",4);
 }
-
-void	print_content(void *content)
-{
-	printf("%d ", *(int *)content);
-}
