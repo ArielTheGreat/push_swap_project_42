@@ -44,18 +44,40 @@ int	ft_check_not_digit_character(char *str)
 	return (0);
 }
 
+int check_validity(char *elements)
+{
+	int i;
+
+	i = 0;
+	while(elements[i] != NULL)
+	{
+		if (ft_check_not_digit_character(elements[i]) == 1
+			|| ft_check_is_int(elements[i]) == 0)
+		{
+			return (1);
+		}
+		i++;
+	}
+	return (0);
+}
+
 int calculate_parameters(int argc, char *argv[])
 {
 	int i;
 	char *words;
+	int counter_arguments;
 
 	i = 1;
 	while(i < argc)
 	{
 		words = ft_split(argv[i], ' ');
-		
-		i++;
+		if (check_validity(words) == 1)
+		{
+			return (0);
+			free(words);
+		}
 		free(words);
+		i++;
 	}
 }
 
@@ -65,7 +87,8 @@ int	*allocate_and_validate(int argc, char *argv[])
 	int	counter;
 	int	counter_for_array;
 
-	calculate_parameters(argc, argv);
+	if (calculate_parameters(argc, argv) == 0)
+		return (NULL);
 	array_int = malloc((argc - 1) * sizeof(int));
 	if (!array_int)
 		return (NULL);
