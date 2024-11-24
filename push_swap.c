@@ -84,29 +84,36 @@ t_list	*create_and_link_nodes(int *array_int, int argc, int *argv)
 	return (first_node);
 }
 
+void	allocate_sorted_array(int **array_int_sorted, int size, int *array_int)
+{
+	int	i;
+
+	i = 0;
+	*array_int_sorted = malloc(size * sizeof(int));
+	if (!*array_int_sorted)
+		return ;
+	while (i < size)
+	{
+		(*array_int_sorted)[i] = array_int[i];
+		i++;
+	}
+	order_array_quicksort(*array_int_sorted, size);
+}
+
 int	main(int argc, char *argv[])
 {
 	int		*array_int_sorted;
 	int		*array_int;
 	t_list	*first_node;
-	int size;
-	int i;
+	int		size;
 
-	i = 0;
+	array_int_sorted = NULL;
 	if (argc < 2)
 		return (0);
 	array_int = process_arguments(argc, argv, &size);
 	if (array_int)
-	{
-		array_int_sorted = malloc((size) * sizeof(int));
-		while(i < size)
-		{
-			array_int_sorted[i] = array_int[i];
-			i++;
-		}
-		order_array_quicksort(array_int_sorted, size);
-	}
-	if (!array_int)
+		allocate_sorted_array(&array_int_sorted, size, array_int);
+	else
 	{
 		write(2, "Error\n", 6);
 		return (1);
@@ -117,8 +124,7 @@ int	main(int argc, char *argv[])
 		free(array_int_sorted);
 		return (1);
 	}
-	free(array_int_sorted);
-	free(array_int);
+	free_arrays(&array_int_sorted, &array_int);
 	do_things(first_node);
 	return (0);
 }
