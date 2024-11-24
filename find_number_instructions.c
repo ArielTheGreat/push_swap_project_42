@@ -76,16 +76,7 @@ int	append_node(t_stack **first_node, t_stack **last_node, int index, int value)
 }
 
 int	append_and_check(t_stack **first_node, t_stack **last_node,
-	int *array_int_sorted, int number)
+	int index, int number)
 {
-	int	index;
-	int	array_size;
-
-	array_size = 0;
-	while (array_int_sorted[array_size] != '\0')
-		array_size++;
-	index = search_in_array(array_int_sorted, array_size, number);
-	if (index == -1)
-		return (0);
 	return (append_node(first_node, last_node, index, number));
 }

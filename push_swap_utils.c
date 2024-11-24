@@ -102,13 +102,13 @@ void	apply_algorithm(t_stack **stack_a, t_stack **stack_b, int counter)
 	{
 		if (temporal->index <= index)
 		{
-			pb(stack_b, stack_a);
+			pb(stack_a, stack_b);
 			rb(stack_b);
 			index++;
 		}
 		else if (temporal->index <= index + range)
 		{
-			pb(stack_b, stack_a);
+			pb(stack_a, stack_b);
 			index++;
 		}
 		else

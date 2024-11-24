@@ -42,7 +42,7 @@ void	rrb(t_stack **b);
 void	rrr(t_stack **a, t_stack **b);
 
 int		check_order_min_to_max(t_stack *first_node);
-void	do_things(t_stack *first_node_a);
+void	do_things(t_stack *first_node_a, int size);
 t_stack	*create_node(int index, int value);
 void	order_array_quicksort(int *array_int, int length_array);
 void	apply_algorithm(t_stack **stack_a, t_stack **stack_b, int counter);
@@ -51,9 +51,9 @@ int		top_instructions(t_stack **stack_b, t_stack *biggest_number);
 int		down_instructions(t_stack **stack_b, t_stack *biggest_number);
 int		*process_arguments(int argc, char *argv[], int *size);
 int		search_in_array(int *integer_list, int size, int value);
-t_stack	*create_and_link_nodes(int *array_int, int argc, int *argv);
+t_stack	*create_and_link_nodes(int *array_int, int size, int *argv);
 int		append_and_check(t_stack **first_node, t_stack **last_node,
-			int *array_int, int number);
+			int index, int number);
 int		ft_check_is_int(const char *str);
 int		check_for_duplicates(int *array_int, int size);
 void	free_arrays(int **array_int_sorted, int **array_int);

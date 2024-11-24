@@ -105,20 +105,18 @@ void	free_stack(t_stack **stack)
 	}
 }
 
-void	do_things(t_stack *first_node_a)
+void	do_things(t_stack *first_node_a, int size)
 {
 	t_stack	*first_node_b;
 	int		is_sorted;
-	int		counter;
-
+	
 	first_node_b = NULL;
-	counter = 1;
 	is_sorted = check_order_min_to_max(first_node_a);
 	if (is_sorted == 1)
 	{
 		free_stack(&first_node_a);
 		return ;
 	}
-	apply_algorithm(&first_node_a, &first_node_b, counter);
+	apply_algorithm(&first_node_a, &first_node_b, size);
 	free_stack(&first_node_a);
 }
