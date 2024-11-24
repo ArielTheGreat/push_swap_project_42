@@ -12,10 +12,10 @@
 
 #include "push_swap_utils.h"
 
-int	down_instructions(t_list **stack_b, t_list *biggest_number)
+int	down_instructions(t_stack **stack_b, t_stack *biggest_number)
 {
 	int		moves;
-	t_list	*current;
+	t_stack	*current;
 
 	moves = 0;
 	current = *stack_b;
@@ -29,10 +29,10 @@ int	down_instructions(t_list **stack_b, t_list *biggest_number)
 	return (moves);
 }
 
-int	top_instructions(t_list **stack_b, t_list *biggest_number)
+int	top_instructions(t_stack **stack_b, t_stack *biggest_number)
 {
 	int		moves;
-	t_list	*current;
+	t_stack	*current;
 
 	moves = 0;
 	current = *stack_b;
@@ -44,27 +44,27 @@ int	top_instructions(t_list **stack_b, t_list *biggest_number)
 	return (moves);
 }
 
-t_list	*find_biggest_number(t_list **stack)
+t_stack	*find_biggest_number(t_stack **stack)
 {
-	t_list	*current;
-	t_list	*max_node;
+	t_stack	*current;
+	t_stack	*max_node;
 
 	current = *stack;
 	max_node = *stack;
 	while (current)
 	{
-		if (*(int *)current->content > *(int *)max_node->content)
+		if (current->value > max_node->value)
 			max_node = current;
 		current = current->next;
 	}
 	return (max_node);
 }
 
-int	append_node(t_list **first_node, t_list **last_node, int index)
+int	append_node(t_stack **first_node, t_stack **last_node, int index, int value)
 {
-	t_list	*new_node;
+	t_stack	*new_node;
 
-	new_node = create_node(index);
+	new_node = create_node(index, value);
 	if (!new_node)
 		return (0);
 	if (*first_node == NULL)
@@ -75,17 +75,17 @@ int	append_node(t_list **first_node, t_list **last_node, int index)
 	return (1);
 }
 
-int	append_and_check(t_list **first_node, t_list **last_node,
-	int *array_int, int number)
+int	append_and_check(t_stack **first_node, t_stack **last_node,
+	int *array_int_sorted, int number)
 {
 	int	index;
 	int	array_size;
 
 	array_size = 0;
-	while (array_int[array_size] != '\0')
+	while (array_int_sorted[array_size] != '\0')
 		array_size++;
-	index = search_in_array(array_int, array_size, number);
+	index = search_in_array(array_int_sorted, array_size, number);
 	if (index == -1)
 		return (0);
-	return (append_node(first_node, last_node, index));
+	return (append_node(first_node, last_node, index, number));
 }

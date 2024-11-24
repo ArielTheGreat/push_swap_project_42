@@ -32,10 +32,10 @@ int	check_for_duplicates(int *array_int, int size)
 	return (1);
 }
 
-t_list	*create_and_link_nodes(int *array_int, int argc, int *argv)
+t_stack	*create_and_link_nodes(int *array_int, int argc, int *argv)
 {
-	t_list	*first_node;
-	t_list	*last_node;
+	t_stack	*first_node;
+	t_stack	*last_node;
 	int		counter;
 
 	first_node = NULL;
@@ -46,7 +46,7 @@ t_list	*create_and_link_nodes(int *array_int, int argc, int *argv)
 		if (!append_and_check(&first_node, &last_node,
 				array_int, argv[counter]))
 		{
-			ft_lstclear(&first_node, free);
+			free_stack(&first_node);
 			if (array_int && *array_int)
 				free(array_int);
 			return (NULL);
@@ -76,7 +76,7 @@ int	main(int argc, char *argv[])
 {
 	int		*array_int_sorted;
 	int		*array_int;
-	t_list	*first_node;
+	t_stack	*first_node;
 	int		size;
 
 	array_int_sorted = NULL;

@@ -12,22 +12,15 @@
 
 #include "push_swap_utils.h"
 
-t_list	*create_node(int number_char)
+t_stack	*create_node(int index, int value)
 {
-	t_list	*n;
-	int		*number;
-
-	number = malloc(sizeof(int));
-	if (!number)
-		return (NULL);
-	*number = number_char;
-	n = malloc(sizeof(t_list));
+	t_stack	*n;
+	
+	n = malloc(sizeof(t_stack));
 	if (!n)
-	{
-		free(number);
 		return (NULL);
-	}
-	n->content = (void *)number;
+	n->value = value;
+	n->index = index;
 	n->next = NULL;
 	return (n);
 }
@@ -58,49 +51,62 @@ int	square_root(int x)
 	return (ans);
 }
 
-void	sort_back_to_a(t_list **stack_a, t_list **stack_b)
+int	get_stack_size(t_stack *stack)
+{
+	int	size;
+
+	size = 0;
+	while (stack)
+	{
+		size++;
+		stack = stack->next;
+	}
+	return (size);
+}
+
+void	sort_back_to_a(t_stack **stack_a, t_stack **stack_b)
 {
 	int		number_bottom_instructions;
 	int		number_top_instructions;
-	t_list	*biggest_number;
+	t_stack	*biggest_number;
 
-	while (ft_lstsize(*stack_b) != 0)
+	while (get_stack_size(*stack_b) != 0)
 	{
 		biggest_number = find_biggest_number(stack_b);
 		number_bottom_instructions = down_instructions(stack_b, biggest_number);
 		number_top_instructions = top_instructions(stack_b, biggest_number);
 		if (number_top_instructions > number_bottom_instructions)
 		{
-			while (number_bottom_instructions-- > 0)
+			while (number_bottom_instructions--)
 				rrb(stack_b);
 		}
 		else
 		{
-			while (number_top_instructions-- > 0)
+			while (number_top_instructions--)
 				rb(stack_b);
 		}
 		pa(stack_a, stack_b);
 	}
 }
 
-void	apply_algorithm(t_list **stack_a, t_list **stack_b, int counter)
+void	apply_algorithm(t_stack **stack_a, t_stack **stack_b, int counter)
 {
 	int		range;
 	int		index;
-	t_list	*temporal;
+	t_stack	*temporal;
 
 	range = (int)square_root(counter) * 1.4;
 	index = 0;
 	temporal = (*stack_a);
 	while (temporal != NULL)
 	{
-		if (*(int *)temporal->content <= index)
+		if (temporal->index <= index)
 		{
 			pb(stack_b, stack_a);
 			rb(stack_b);
 			index++;
 		}
-		else if (*(int *)temporal->content <= index + range)
+		else if (temporal->index <= index + range)
 		{
 			pb(stack_b, stack_a);
 			index++;

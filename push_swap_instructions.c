@@ -12,63 +12,59 @@
 
 #include "push_swap_utils.h"
 
-void	sa(t_list *first_node_a)
+void	swap(t_stack **stack)
 {
-	t_list	*second_node_a;
-	void	*value_first_element;
+	t_stack	*tmp;
 
-	second_node_a = NULL;
-	if (first_node_a == NULL || !first_node_a->next)
-		return ;
-	value_first_element = first_node_a->content;
-	second_node_a = first_node_a->next;
-	first_node_a->content = second_node_a->content;
-	second_node_a->content = value_first_element;
+	if (*stack && (*stack)->next)
+	{
+		tmp = (*stack)->next;
+		(*stack)->next = tmp->next;
+		tmp->next = *stack;
+		*stack = tmp;
+	}
+}
+
+void	sa(t_stack **a)
+{
+	swap(a);
 	write(1, "sa\n", 3);
 }
 
-void	sb(t_list *first_node_b)
+void	sb(t_stack **b)
 {
-	t_list	*second_node_b;
-	void	*value_first_element;
-
-	second_node_b = NULL;
-	if (first_node_b == NULL || !first_node_b->next)
-		return ;
-	second_node_b = first_node_b->next;
-	value_first_element = first_node_b->content;
-	first_node_b->content = second_node_b->content;
-	second_node_b->content = value_first_element;
+	swap(b);
 	write(1, "sb\n", 3);
 }
 
-void	ss(t_list *first_node_a, t_list *first_node_b)
+void	ss(t_stack **a, t_stack **b)
 {
-	sa(first_node_a);
-	sb(first_node_b);
+	swap(a);
+	swap(b);
 	write(1, "ss\n", 3);
 }
 
-void	pa(t_list **first_node_a, t_list **first_node_b)
+void	push(t_stack **src, t_stack **dest)
 {
-	t_list	*tmp;
+	t_stack	*tmp;
 
-	if (!first_node_b || !*first_node_b)
-		return ;
-	tmp = (*first_node_b)->next;
-	ft_lstadd_front(first_node_a, *first_node_b);
-	*first_node_b = tmp;
+	if (*src)
+	{
+		tmp = *src;
+		*src = (*src)->next;
+		tmp->next = *dest;
+		*dest = tmp;
+	}
+}
+
+void	pa(t_stack **a, t_stack **b)
+{
+	push(b, a);
 	write(1, "pa\n", 3);
 }
 
-void	pb(t_list **first_node_b, t_list **first_node_a)
+void	pb(t_stack **a, t_stack **b)
 {
-	t_list	*tmp;
-
-	if (!first_node_a || !*first_node_a)
-		return ;
-	tmp = (*first_node_a)->next;
-	ft_lstadd_front(first_node_b, *first_node_a);
-	*first_node_a = tmp;
+	push(a, b);
 	write(1, "pb\n", 3);
 }

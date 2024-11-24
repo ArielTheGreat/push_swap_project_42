@@ -12,7 +12,7 @@
 
 #include "push_swap_utils.h"
 
-void	swap(int *a, int *b)
+void	quicksort_swap(int *a, int *b)
 {
 	int	temp;
 
@@ -35,11 +35,11 @@ int	partition(int *array_int, int low, int high)
 		if (array_int[j] <= pivot)
 		{
 			i++;
-			swap(&array_int[i], &array_int[j]);
+			quicksort_swap(&array_int[i], &array_int[j]);
 		}
 		j++;
 	}
-	swap(&array_int[i + 1], &array_int[high]);
+	quicksort_swap(&array_int[i + 1], &array_int[high]);
 	return (i + 1);
 }
 

@@ -12,9 +12,41 @@
 
 #include "push_swap_utils.h"
 
-void	rrr(t_list **first_node_a, t_list **first_node_b)
+void	reverse_rotate(t_stack **stack)
 {
-	rra(first_node_a);
-	rrb(first_node_b);
+	t_stack	*last;
+	t_stack	*second_last;
+
+	if (*stack && (*stack)->next)
+	{
+		last = *stack;
+		while (last->next)
+		{
+			second_last = last;
+			last = last->next;
+		}
+		second_last->next = NULL;
+		last->next = *stack;
+		*stack = last;
+	}
+}
+
+void	rra(t_stack **a)
+{
+	reverse_rotate(a);
+	write(1, "rra\n", 4);
+}
+
+void	rrb(t_stack **b)
+{
+	reverse_rotate(b);
+	write(1, "rrb\n", 4);
+}
+
+
+void	rrr(t_stack **a, t_stack **b)
+{
+	reverse_rotate(a);
+	reverse_rotate(b);
 	write(1, "rrr\n", 4);
 }

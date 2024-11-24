@@ -18,34 +18,46 @@
 # include <limits.h>
 # include "libft/libft.h"
 
-void	sa(t_list *first_node_a);
-void	sb(t_list *first_node_b);
-void	ss(t_list *first_node_a, t_list *first_node_b);
-void	pa(t_list **first_node_a, t_list **first_node_b);
-void	pb(t_list **first_node_b, t_list **first_node_a);
-void	ra(t_list **first_node_a);
-void	rb(t_list **first_node_b);
-void	rr(t_list **first_node_a, t_list **first_node_b);
-void	rra(t_list **first_node_a);
-void	rrb(t_list **first_node_b);
-void	rrr(t_list **first_node_a, t_list **first_node_b);
+typedef struct s_stack
+{
+	int				value;
+	int				index;
+	struct s_stack	*next;
+}	t_stack;
 
-int		check_order_min_to_max(t_list *first_node);
-void	do_things(t_list *first_node_a);
-t_list	*create_node(int number_char);
+void	swap(t_stack **stack);
+void	sa(t_stack **a);
+void	sb(t_stack **b);
+void	ss(t_stack **a, t_stack **b);
+void	push(t_stack **a, t_stack **b);
+void	pa(t_stack **a, t_stack **b);
+void	pb(t_stack **a, t_stack **b);
+void	rotate(t_stack **stack);
+void	ra(t_stack **a);
+void	rb(t_stack **b);
+void	rr(t_stack **a, t_stack **b);
+void	reverse_rotate(t_stack **stack);
+void	rra(t_stack **a);
+void	rrb(t_stack **b);
+void	rrr(t_stack **a, t_stack **b);
+
+int		check_order_min_to_max(t_stack *first_node);
+void	do_things(t_stack *first_node_a);
+t_stack	*create_node(int index, int value);
 void	order_array_quicksort(int *array_int, int length_array);
-void	apply_algorithm(t_list **stack_a, t_list **stack_b, int counter);
-t_list	*find_biggest_number(t_list **stack);
-int		top_instructions(t_list **stack_b, t_list *biggest_number);
-int		down_instructions(t_list **stack_b, t_list *biggest_number);
+void	apply_algorithm(t_stack **stack_a, t_stack **stack_b, int counter);
+t_stack	*find_biggest_number(t_stack **stack);
+int		top_instructions(t_stack **stack_b, t_stack *biggest_number);
+int		down_instructions(t_stack **stack_b, t_stack *biggest_number);
 int		*process_arguments(int argc, char *argv[], int *size);
 int		search_in_array(int *integer_list, int size, int value);
-t_list	*create_and_link_nodes(int *array_int, int argc, int *argv);
-int		append_and_check(t_list **first_node, t_list **last_node,
+t_stack	*create_and_link_nodes(int *array_int, int argc, int *argv);
+int		append_and_check(t_stack **first_node, t_stack **last_node,
 			int *array_int, int number);
 int		ft_check_is_int(const char *str);
 int		check_for_duplicates(int *array_int, int size);
 void	free_arrays(int **array_int_sorted, int **array_int);
 int		check_validity(char **elements, int *counter_arguments);
+void	free_stack(t_stack **stack);
 
 #endif

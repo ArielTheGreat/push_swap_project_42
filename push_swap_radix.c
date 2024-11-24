@@ -92,9 +92,22 @@ int	*process_arguments(int argc, char *argv[], int *size)
 	return (array_int);
 }
 
-void	do_things(t_list *first_node_a)
+
+void	free_stack(t_stack **stack)
 {
-	t_list	*first_node_b;
+	t_stack	*current;
+
+	while (*stack)
+	{
+		current = (*stack)->next;
+		free(*stack);
+		*stack = current;
+	}
+}
+
+void	do_things(t_stack *first_node_a)
+{
+	t_stack	*first_node_b;
 	int		is_sorted;
 	int		counter;
 
@@ -103,9 +116,9 @@ void	do_things(t_list *first_node_a)
 	is_sorted = check_order_min_to_max(first_node_a);
 	if (is_sorted == 1)
 	{
-		ft_lstclear(&first_node_a, free);
+		free_stack(&first_node_a);
 		return ;
 	}
 	apply_algorithm(&first_node_a, &first_node_b, counter);
-	ft_lstclear(&first_node_a, free);
+	free_stack(&first_node_a);
 }

@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "chrono": "c",
-        "push_swap_utils.h": "c"
+        "push_swap_utils.h": "c",
+        "iterator": "c"
     }
 }
