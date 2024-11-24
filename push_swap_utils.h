@@ -46,5 +46,6 @@ int		append_and_check(t_list **first_node, t_list **last_node,
 int		ft_check_is_int(const char *str);
 int		check_for_duplicates(int *array_int, int size);
 void	free_arrays(int **array_int_sorted, int **array_int);
+int		check_validity(char **elements, int *counter_arguments);
 
 #endif

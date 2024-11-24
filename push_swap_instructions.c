@@ -24,7 +24,7 @@ void	sa(t_list *first_node_a)
 	second_node_a = first_node_a->next;
 	first_node_a->content = second_node_a->content;
 	second_node_a->content = value_first_element;
-	write(1, "SA\n", 3);
+	write(1, "sa\n", 3);
 }
 
 void	sb(t_list *first_node_b)
@@ -39,14 +39,14 @@ void	sb(t_list *first_node_b)
 	value_first_element = first_node_b->content;
 	first_node_b->content = second_node_b->content;
 	second_node_b->content = value_first_element;
-	write(1, "SB\n", 3);
+	write(1, "sb\n", 3);
 }
 
 void	ss(t_list *first_node_a, t_list *first_node_b)
 {
 	sa(first_node_a);
 	sb(first_node_b);
-	write(1, "SS\n", 3);
+	write(1, "ss\n", 3);
 }
 
 void	pa(t_list **first_node_a, t_list **first_node_b)
@@ -58,7 +58,7 @@ void	pa(t_list **first_node_a, t_list **first_node_b)
 	tmp = (*first_node_b)->next;
 	ft_lstadd_front(first_node_a, *first_node_b);
 	*first_node_b = tmp;
-	write(1, "PA\n", 3);
+	write(1, "pa\n", 3);
 }
 
 void	pb(t_list **first_node_b, t_list **first_node_a)
@@ -70,5 +70,5 @@ void	pb(t_list **first_node_b, t_list **first_node_a)
 	tmp = (*first_node_a)->next;
 	ft_lstadd_front(first_node_b, *first_node_a);
 	*first_node_a = tmp;
-	write(1, "PB\n", 3);
+	write(1, "pb\n", 3);
 }
