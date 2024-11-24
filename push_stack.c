@@ -12,9 +12,9 @@
 
 #include "push_swap_utils.h"
 
-void	push(l_node **src, l_node **dest)
+void	push(t_node **src, t_node **dest)
 {
-	l_node	*tmp;
+	t_node	*tmp;
 
 	if (*src)
 	{
@@ -25,13 +25,13 @@ void	push(l_node **src, l_node **dest)
 	}
 }
 
-void	pa(l_node **a, l_node **b)
+void	pa(t_node **a, t_node **b)
 {
 	push(b, a);
 	write(1, "pa\n", 3);
 }
 
-void	pb(l_node **a, l_node **b)
+void	pb(t_node **a, t_node **b)
 {
 	push(a, b);
 	write(1, "pb\n", 3);

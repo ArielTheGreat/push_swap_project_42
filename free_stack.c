@@ -12,9 +12,9 @@
 
 #include "push_swap_utils.h"
 
-void	free_stack(l_node **stack)
+void	free_stack(t_node **stack)
 {
-	l_node	*current;
+	t_node	*current;
 
 	while (*stack)
 	{

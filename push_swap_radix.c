@@ -92,9 +92,9 @@ int	*process_arguments(int argc, char *argv[], int *size)
 	return (array_int);
 }
 
-void	do_things(l_node *first_node_a, int size)
+void	do_things(t_node *first_node_a, int size)
 {
-	l_node	*first_node_b;
+	t_node	*first_node_b;
 	int		is_sorted;
 
 	first_node_b = NULL;

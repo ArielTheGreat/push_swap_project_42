@@ -12,7 +12,7 @@
 
 #include "push_swap_utils.h"
 
-void	move_min_to_b(l_node **a, l_node **b, int *size)
+void	move_min_to_b(t_node **a, t_node **b, int *size)
 {
 	int	min_value;
 	int	min_index;
@@ -37,11 +37,11 @@ int	get_elements_to_move(int size)
 	return (1);
 }
 
-void	sort_to_5(l_node **a, l_node **b)
+void	sort_to_5(t_node **a, t_node **b)
 {
-	int	size;
-	int	elements_to_move;
-	l_node	*temp;
+	int		size;
+	int		elements_to_move;
+	t_node	*temp;
 
 	size = 0;
 	temp = *a;

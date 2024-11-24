@@ -12,10 +12,10 @@
 
 #include "push_swap_utils.h"
 
-void	reverse_rotate(l_node **stack)
+void	reverse_rotate(t_node **stack)
 {
-	l_node	*last;
-	l_node	*second_last;
+	t_node	*last;
+	t_node	*second_last;
 
 	if (*stack && (*stack)->next)
 	{
@@ -31,19 +31,19 @@ void	reverse_rotate(l_node **stack)
 	}
 }
 
-void	rra(l_node **a)
+void	rra(t_node **a)
 {
 	reverse_rotate(a);
 	write(1, "rra\n", 4);
 }
 
-void	rrb(l_node **b)
+void	rrb(t_node **b)
 {
 	reverse_rotate(b);
 	write(1, "rrb\n", 4);
 }
 
-void	rrr(l_node **a, l_node **b)
+void	rrr(t_node **a, t_node **b)
 {
 	reverse_rotate(a);
 	reverse_rotate(b);

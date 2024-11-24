@@ -12,39 +12,44 @@
 
 #include "push_swap_utils.h"
 
-int	find_min_value(l_node *stack)
+int	find_min_value(t_node *stack)
 {
-	int min_value = INT_MAX;
+	int	min_value;
 
+	min_value = INT_MAX;
 	while (stack)
 	{
 		if (stack->value < min_value)
 			min_value = stack->value;
 		stack = stack->next;
 	}
-	return min_value;
+	return (min_value);
 }
 
-int	find_min_index(l_node *stack, int min_value)
+int	find_min_index(t_node *stack, int min_value)
 {
-	int position = 0;
+	int	position;
 
+	position = 0;
 	while (stack)
 	{
 		if (stack->value == min_value)
-			return position;
+			return (position);
 		stack = stack->next;
 		position++;
 	}
-	return -1;
+	return (-1);
 }
 
-void	sort_3(l_node **a)
+void	sort_3(t_node **a)
 {
-	int first = (*a)->value;
-	int second = (*a)->next->value;
-	int third = (*a)->next->next->value;
+	int	first;
+	int	second;
+	int	third;
 
+	first = (*a)->value;
+	second = (*a)->next->value;
+	third = (*a)->next->next->value;
 	if (first > second && second < third && first < third)
 		sa(a);
 	else if (first > second && second > third && first > third)

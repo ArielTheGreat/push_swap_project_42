@@ -12,11 +12,11 @@
 
 #include "push_swap_utils.h"
 
-l_node	*create_node(int index, int value)
+t_node	*create_node(int index, int value)
 {
-	l_node	*n;
+	t_node	*n;
 
-	n = malloc(sizeof(l_node));
+	n = malloc(sizeof(t_node));
 	if (!n)
 		return (NULL);
 	n->value = value;
@@ -51,7 +51,7 @@ int	square_root(int x)
 	return (ans);
 }
 
-int	gel_node_size(l_node *stack)
+int	get_node_size(t_node *stack)
 {
 	int	size;
 
@@ -64,13 +64,13 @@ int	gel_node_size(l_node *stack)
 	return (size);
 }
 
-void	sort_back_to_a(l_node **stack_a, l_node **stack_b)
+void	sort_back_to_a(t_node **stack_a, t_node **stack_b)
 {
 	int		number_bottom_instructions;
 	int		number_top_instructions;
-	l_node	*biggest_number;
+	t_node	*biggest_number;
 
-	while (gel_node_size(*stack_b) != 0)
+	while (get_node_size(*stack_b) != 0)
 	{
 		biggest_number = find_biggest_number(stack_b);
 		number_bottom_instructions = down_instructions(stack_b, biggest_number);
@@ -89,11 +89,11 @@ void	sort_back_to_a(l_node **stack_a, l_node **stack_b)
 	}
 }
 
-void	apply_algorithm(l_node **stack_a, l_node **stack_b, int counter)
+void	apply_algorithm(t_node **stack_a, t_node **stack_b, int counter)
 {
 	int		range;
 	int		index;
-	l_node	*temporal;
+	t_node	*temporal;
 
 	range = (int)square_root(counter) * 1.4;
 	index = 0;

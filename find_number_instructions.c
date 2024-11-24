@@ -12,10 +12,10 @@
 
 #include "push_swap_utils.h"
 
-int	down_instructions(l_node **stack_b, l_node *biggest_number)
+int	down_instructions(t_node **stack_b, t_node *biggest_number)
 {
 	int		moves;
-	l_node	*current;
+	t_node	*current;
 
 	moves = 0;
 	current = *stack_b;
@@ -29,10 +29,10 @@ int	down_instructions(l_node **stack_b, l_node *biggest_number)
 	return (moves);
 }
 
-int	top_instructions(l_node **stack_b, l_node *biggest_number)
+int	top_instructions(t_node **stack_b, t_node *biggest_number)
 {
 	int		moves;
-	l_node	*current;
+	t_node	*current;
 
 	moves = 0;
 	current = *stack_b;
@@ -44,10 +44,10 @@ int	top_instructions(l_node **stack_b, l_node *biggest_number)
 	return (moves);
 }
 
-l_node	*find_biggest_number(l_node **stack)
+t_node	*find_biggest_number(t_node **stack)
 {
-	l_node	*current;
-	l_node	*max_node;
+	t_node	*current;
+	t_node	*max_node;
 
 	current = *stack;
 	max_node = *stack;
@@ -60,9 +60,9 @@ l_node	*find_biggest_number(l_node **stack)
 	return (max_node);
 }
 
-int	append_node(l_node **first_node, l_node **last_node, int index, int value)
+int	append_node(t_node **first_node, t_node **last_node, int index, int value)
 {
-	l_node	*new_node;
+	t_node	*new_node;
 
 	new_node = create_node(index, value);
 	if (!new_node)
@@ -75,7 +75,7 @@ int	append_node(l_node **first_node, l_node **last_node, int index, int value)
 	return (1);
 }
 
-int	append_and_check(l_node **first_node, l_node **last_node,
+int	append_and_check(t_node **first_node, t_node **last_node,
 	int index, int number)
 {
 	return (append_node(first_node, last_node, index, number));
