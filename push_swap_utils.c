@@ -15,7 +15,7 @@
 t_stack	*create_node(int index, int value)
 {
 	t_stack	*n;
-	
+
 	n = malloc(sizeof(t_stack));
 	if (!n)
 		return (NULL);

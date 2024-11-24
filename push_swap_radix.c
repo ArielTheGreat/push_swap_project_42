@@ -92,24 +92,11 @@ int	*process_arguments(int argc, char *argv[], int *size)
 	return (array_int);
 }
 
-
-void	free_stack(t_stack **stack)
-{
-	t_stack	*current;
-
-	while (*stack)
-	{
-		current = (*stack)->next;
-		free(*stack);
-		*stack = current;
-	}
-}
-
 void	do_things(t_stack *first_node_a, int size)
 {
 	t_stack	*first_node_b;
 	int		is_sorted;
-	
+
 	first_node_b = NULL;
 	is_sorted = check_order_min_to_max(first_node_a);
 	if (is_sorted == 1)

@@ -37,7 +37,7 @@ t_stack	*create_and_link_nodes(int *array_int_sorted, int size, int *array_int)
 	t_stack	*first_node;
 	t_stack	*last_node;
 	int		counter;
-	int	index;
+	int		index;
 
 	first_node = NULL;
 	last_node = NULL;

@@ -1,45 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_moving.c                                 :+:      :+:    :+:   */
+/*   push_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frocha <frocha@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 23:32:26 by frocha            #+#    #+#             */
-/*   Updated: 2024/11/11 23:32:28 by frocha           ###   ########.fr       */
+/*   Created: 2024/11/24 17:51:48 by frocha            #+#    #+#             */
+/*   Updated: 2024/11/24 17:51:50 by frocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_utils.h"
 
-void	swap(t_stack **stack)
+void	push(t_stack **src, t_stack **dest)
 {
 	t_stack	*tmp;
 
-	if (*stack && (*stack)->next)
+	if (*src)
 	{
-		tmp = (*stack)->next;
-		(*stack)->next = tmp->next;
-		tmp->next = *stack;
-		*stack = tmp;
+		tmp = *src;
+		*src = (*src)->next;
+		tmp->next = *dest;
+		*dest = tmp;
 	}
 }
 
-void	sa(t_stack **a)
+void	pa(t_stack **a, t_stack **b)
 {
-	swap(a);
-	write(1, "sa\n", 3);
+	push(b, a);
+	write(1, "pa\n", 3);
 }
 
-void	sb(t_stack **b)
+void	pb(t_stack **a, t_stack **b)
 {
-	swap(b);
-	write(1, "sb\n", 3);
-}
-
-void	ss(t_stack **a, t_stack **b)
-{
-	swap(a);
-	swap(b);
-	write(1, "ss\n", 3);
+	push(a, b);
+	write(1, "pb\n", 3);
 }

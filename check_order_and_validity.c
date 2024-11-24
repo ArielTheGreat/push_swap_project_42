@@ -19,7 +19,7 @@ int	check_order_min_to_max(t_stack *first_node)
 	second_node = first_node->next;
 	while (second_node != NULL
 		&& second_node->value
-			> first_node->value)
+		> first_node->value)
 	{
 		first_node = first_node->next;
 		second_node = second_node->next;
