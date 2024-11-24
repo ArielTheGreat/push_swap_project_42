@@ -108,7 +108,7 @@ int	main(int argc, char *argv[])
 	}
 	if (!array_int)
 	{
-		write(stderr, "Error\n", 6);
+		write(2, "Error\n", 6);
 		return (1);
 	}
 	first_node = create_and_link_nodes(array_int_sorted, size, array_int);
