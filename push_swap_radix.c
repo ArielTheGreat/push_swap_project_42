@@ -92,9 +92,9 @@ int	*process_arguments(int argc, char *argv[], int *size)
 	return (array_int);
 }
 
-void	do_things(t_stack *first_node_a, int size)
+void	do_things(l_node *first_node_a, int size)
 {
-	t_stack	*first_node_b;
+	l_node	*first_node_b;
 	int		is_sorted;
 
 	first_node_b = NULL;
@@ -104,6 +104,13 @@ void	do_things(t_stack *first_node_a, int size)
 		free_stack(&first_node_a);
 		return ;
 	}
-	apply_algorithm(&first_node_a, &first_node_b, size);
+	if (size == 2)
+		ra(&first_node_a);
+	else if (size == 3)
+		sort_3(&first_node_a);
+	else if (size > 3 && size <= 5)
+		sort_to_5(&first_node_a, &first_node_b);
+	else
+		apply_algorithm(&first_node_a, &first_node_b, size);
 	free_stack(&first_node_a);
 }

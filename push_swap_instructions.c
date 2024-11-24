@@ -12,9 +12,9 @@
 
 #include "push_swap_utils.h"
 
-void	swap(t_stack **stack)
+void	swap(l_node **stack)
 {
-	t_stack	*tmp;
+	l_node	*tmp;
 
 	if (*stack && (*stack)->next)
 	{
@@ -25,19 +25,19 @@ void	swap(t_stack **stack)
 	}
 }
 
-void	sa(t_stack **a)
+void	sa(l_node **a)
 {
 	swap(a);
 	write(1, "sa\n", 3);
 }
 
-void	sb(t_stack **b)
+void	sb(l_node **b)
 {
 	swap(b);
 	write(1, "sb\n", 3);
 }
 
-void	ss(t_stack **a, t_stack **b)
+void	ss(l_node **a, l_node **b)
 {
 	swap(a);
 	swap(b);

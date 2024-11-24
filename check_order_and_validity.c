@@ -12,9 +12,9 @@
 
 #include "push_swap_utils.h"
 
-int	check_order_min_to_max(t_stack *first_node)
+int	check_order_min_to_max(l_node *first_node)
 {
-	t_stack	*second_node;
+	l_node	*second_node;
 
 	second_node = first_node->next;
 	while (second_node != NULL

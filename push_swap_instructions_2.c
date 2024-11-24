@@ -12,10 +12,10 @@
 
 #include "push_swap_utils.h"
 
-void	rotate(t_stack **stack)
+void	rotate(l_node **stack)
 {
-	t_stack	*first;
-	t_stack	*tmp;
+	l_node	*first;
+	l_node	*tmp;
 
 	if (*stack && (*stack)->next)
 	{
@@ -29,19 +29,19 @@ void	rotate(t_stack **stack)
 	}
 }
 
-void	ra(t_stack **a)
+void	ra(l_node **a)
 {
 	rotate(a);
 	write(1, "ra\n", 3);
 }
 
-void	rb(t_stack **b)
+void	rb(l_node **b)
 {
 	rotate(b);
 	write(1, "rb\n", 3);
 }
 
-void	rr(t_stack **a, t_stack **b)
+void	rr(l_node **a, l_node **b)
 {
 	rotate(a);
 	rotate(b);

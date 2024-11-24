@@ -32,10 +32,10 @@ int	check_for_duplicates(int *array_int, int size)
 	return (1);
 }
 
-t_stack	*create_and_link_nodes(int *array_int_sorted, int size, int *array_int)
+l_node	*create_and_link_nodes(int *array_int_sorted, int size, int *array_int)
 {
-	t_stack	*first_node;
-	t_stack	*last_node;
+	l_node	*first_node;
+	l_node	*last_node;
 	int		counter;
 	int		index;
 
@@ -80,7 +80,7 @@ int	main(int argc, char *argv[])
 {
 	int		*array_int_sorted;
 	int		*array_int;
-	t_stack	*first_node;
+	l_node	*first_node;
 	int		size;
 
 	array_int_sorted = NULL;
