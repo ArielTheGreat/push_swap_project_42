@@ -47,8 +47,7 @@ int check_validity(char **elements, int *counter_arguments)
 
 	i = 0;
 	while(elements[i] != NULL)
-	{	
-		printf("AA:%s", elements[i]);
+	{
 		if (ft_check_not_digit_character(elements[i]) == 1
 			|| ft_check_is_int(elements[i]) == 0)
 		{
