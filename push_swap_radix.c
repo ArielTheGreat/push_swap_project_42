@@ -40,7 +40,7 @@ int	calculate_parameters(int argc, char *argv[])
 		words = ft_split(argv[i], ' ');
 		if (check_validity(words, &counter_arguments) == 1)
 		{
-			free(words);
+			free_split_arrays(words);
 			return (0);
 		}
 		free_split_arrays(words);
