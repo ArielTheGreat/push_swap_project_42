@@ -63,5 +63,6 @@ int		check_for_duplicates(int *array_int, int size);
 void	free_arrays(int **array_int_sorted, int **array_int);
 int		check_validity(char **elements, int *counter_arguments);
 void	free_stack(t_node **stack);
+void	free_split_arrays(char **words);
 
 #endif

@@ -43,7 +43,7 @@ int	calculate_parameters(int argc, char *argv[])
 			free(words);
 			return (0);
 		}
-		free(words);
+		free_split_arrays(words);
 		i++;
 	}
 	return (counter_arguments);
@@ -71,7 +71,7 @@ int	*allocate_and_validate(int argc, char *argv[], int *size)
 		i = -1;
 		while (words[++i] != NULL)
 			array_int[counter_for_array++] = ft_atoi(words[i]);
-		free(words);
+		free_split_arrays(words);
 	}
 	return (array_int);
 }

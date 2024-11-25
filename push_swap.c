@@ -95,12 +95,9 @@ int	main(int argc, char *argv[])
 		return (1);
 	}
 	first_node = create_and_link_nodes(array_int_sorted, size, array_int);
-	if (!first_node)
-	{
-		free(array_int_sorted);
-		return (1);
-	}
 	free_arrays(&array_int_sorted, &array_int);
+	if (!first_node)
+		return (1);
 	process_and_sort_stack(first_node, size);
 	return (0);
 }

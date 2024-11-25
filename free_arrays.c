@@ -19,3 +19,16 @@ void	free_arrays(int **array_int_sorted, int **array_int)
 	free(*array_int);
 	*array_int = NULL;
 }
+
+void	free_split_arrays(char **words)
+{
+	int		i;
+
+	i = 0;
+	while (words[i] != NULL)
+	{
+		free(words[i]);
+		i++;
+	}
+	free(words);
+}
