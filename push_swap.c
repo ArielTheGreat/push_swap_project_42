@@ -101,6 +101,6 @@ int	main(int argc, char *argv[])
 		return (1);
 	}
 	free_arrays(&array_int_sorted, &array_int);
-	do_things(first_node, size);
+	process_and_sort_stack(first_node, size);
 	return (0);
 }

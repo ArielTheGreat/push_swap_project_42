@@ -92,7 +92,7 @@ int	*process_arguments(int argc, char *argv[], int *size)
 	return (array_int);
 }
 
-void	do_things(t_node *first_node_a, int size)
+void	process_and_sort_stack(t_node *first_node_a, int size)
 {
 	t_node	*first_node_b;
 	int		is_sorted;

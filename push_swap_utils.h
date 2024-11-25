@@ -46,7 +46,7 @@ int		find_min_value(t_node *stack);
 int		find_min_index(t_node *stack, int min_value);
 void	sort_to_5(t_node **first_node_a, t_node **first_node_b);
 int		check_order_min_to_max(t_node *first_node);
-void	do_things(t_node *first_node_a, int size);
+void	process_and_sort_stack(t_node *first_node_a, int size);
 t_node	*create_node(int index, int value);
 void	order_array_quicksort(int *array_int, int length_array);
 void	apply_algorithm(t_node **stack_a, t_node **stack_b, int counter);
